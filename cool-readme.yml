@@ -2,7 +2,8 @@
 user: Mufath
 cards: [languages, contributions, weekly, summary]
 style: classic
-color: theme
+summary:
+  ring: github          # the GitHub logo in the ring; leave out for the percentage
 matrix: true
 transparent: false
 include:
