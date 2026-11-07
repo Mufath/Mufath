@@ -1,0 +1,10 @@
+# Settings: https://github.com/pedrocatalao/github-cool-readme#settings
+user: Mufath
+cards: [languages, contributions, weekly, summary]
+style: oled
+color: theme
+matrix: true
+transparent: false
+include:
+  private: true
+  orgs: true
