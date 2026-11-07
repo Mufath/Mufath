@@ -1,7 +1,7 @@
 # Settings: https://github.com/pedrocatalao/github-cool-readme#settings
 user: Mufath
 cards: [languages, contributions, weekly, summary]
-style: oled
+style: classic
 color: theme
 matrix: true
 transparent: false
