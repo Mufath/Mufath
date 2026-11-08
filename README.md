@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=Software+%26+Web+Developer;TypeScript+%7C+Python+%7C+Java;MySQL+%26+Linux+Explorer;Lifelong+Learner+%26+Builder" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=Software+%26+Web+Developer;Information+Systems+%40+UNAIR;TypeScript+%7C+Python+%7C+Java;AI+%26+UI%2FUX+Enthusiast;Lifelong+Learner+%26+Builder" alt="Typing SVG" />
 </p>
 
 <p align="center">
@@ -26,10 +26,12 @@
 
 ### 🚀 About Me
 
+- 🎓 Information Systems student at **Universitas Airlangga** (UNAIR).
 - 💻 **Software & Web Developer** passionate about building clean, performant, and reliable applications.
 - ⚙️ Currently working with and exploring **TypeScript, Python, Java, and MySQL**.
-- 🐧 Linux user & developer exploring automation, backend logic, and smart IoT solutions.
-- 💬 Let's talk about programming, backend development, or modern web technologies!
+- 🎨 Passionate about **AI integration and intuitive UI/UX design**.
+- 🐧 Linux user exploring automation, backend logic, and smart IoT solutions.
+- 💬 Let's talk about software engineering, design systems, or tech in business!
 
 ---
 
