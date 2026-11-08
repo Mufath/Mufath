@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src="./cards/banner.png" alt="Late Sleep by Kirokaze" width="100%" />
+  <img src="./cards/banner.gif" alt="Late Sleep by Kirokaze" width="100%" />
 </p>
 
 <p align="center">
