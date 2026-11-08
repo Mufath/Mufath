@@ -19,13 +19,26 @@ jobs:
         with:
           token: ${{ secrets.CARDS_TOKEN }}
           output: ${{ runner.temp }}/cards
-      # The cards live on their own branch, as a single commit replaced on each change, so they
-      # don't add to the history of your main branch.
+
+      # Commit cards to main/cards/ so relative path images in README always display reliably
+      - name: Update cards in main branch
+        run: |
+          mkdir -p cards
+          cp "$RUNNER_TEMP"/cards/*.svg cards/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cards/*.svg
+          if git diff --staged --quiet; then
+            echo "No changes in cards"
+          else
+            git commit -m "Update README cards [skip ci]"
+            git push origin main
+          fi
+
       - name: Publish the cards on the cards branch
         run: |
-          # With "cards: []" in cool-readme.yml the cards are off, and there's nothing to publish.
           if ! ls "$RUNNER_TEMP"/cards/*.svg >/dev/null 2>&1; then echo "No cards: they're off"; exit 0; fi
-          git fetch --quiet --depth 1 origin cards:refs/remotes/origin/cards 2>/dev/null || true # not there on the first run
+          git fetch --quiet --depth 1 origin cards:refs/remotes/origin/cards 2>/dev/null || true
           git switch --quiet --orphan cards
           cp "$RUNNER_TEMP"/cards/*.svg .
           git add -- *.svg
