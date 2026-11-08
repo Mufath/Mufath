@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: "0 0 * * *" # everyday at midnight
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
@@ -34,5 +31,6 @@ jobs:
             echo "No changes in snake"
           else
             git commit -m "Update contribution snake [skip ci]"
+            git pull --rebase origin main
             git push origin main
           fi
