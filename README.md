@@ -1,9 +1,9 @@
 <h1 align="center">
-  Hi, I'm <a href="https://github.com/Mufath">Muhammad Fathurrabbany Muhasiby</a> 👋
+  Hi, I'm <a href="https://github.com/Mufath">Muhammad Fathurrabbany</a> 👋
 </h1>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=Software+%26+Fullstack+Developer;TypeScript+%26+Python+Enthusiast;Building+IoT+%26+BI+Solutions;Lifelong+Learner+%26+Problem+Solver" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=Software+%26+Web+Developer;TypeScript+%7C+Python+%7C+Java;MySQL+%26+Linux+Explorer;Lifelong+Learner+%26+Builder" alt="Typing SVG" />
 </p>
 
 <p align="center">
@@ -18,10 +18,10 @@
 
 ### 🚀 About Me
 
-- 💻 **Software & Fullstack Developer** passionate about building clean, performant, and reliable applications.
-- ⚙️ Focused on **TypeScript, Web Applications, IoT systems, and Data Solutions**.
-- 🔭 Constantly experimenting with modern frameworks, developer tooling, and automation workflows.
-- 💬 Let's talk about software architecture, frontend engineering, or smart IoT integrations!
+- 💻 **Software & Web Developer** passionate about building clean, performant, and reliable applications.
+- ⚙️ Currently working with and exploring **TypeScript, Python, Java, and MySQL**.
+- 🐧 Linux user & developer exploring automation, backend logic, and smart IoT solutions.
+- 💬 Let's talk about programming, backend development, or modern web technologies!
 
 ---
 
@@ -29,7 +29,7 @@
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=ts,js,python,nextjs,react,tailwind,nodejs,express,fastapi,postgres,mongodb,git,github,vscode,docker,linux" alt="Tech Stack" />
+    <img src="https://skillicons.dev/icons?i=ts,js,python,java,html,css,mysql,linux,git,github,vscode" alt="Tech Stack" />
   </a>
 </p>
 
@@ -89,5 +89,4 @@
   <a href="https://github.com/Mufath"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
   <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mufath04@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" /></a>
   <a href="https://www.linkedin.com/in/muhammad-fathurrabbany-muhasiby"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="https://instagram.com/mufathz"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" /></a>
 </p>
