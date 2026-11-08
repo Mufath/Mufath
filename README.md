@@ -26,7 +26,7 @@
 
 ### 🚀 About Me
 
-- 🎓 Information Systems student at **Universitas Airlangga** (UNAIR).
+- 🎓 Information Systems student at **Airlangga University** (Unair).
 - 💻 **Software & Web Developer** passionate about building clean, performant, and reliable applications.
 - ⚙️ Currently working with and exploring **TypeScript, Python, Java, and MySQL**.
 - 🎨 Passionate about **AI integration and intuitive UI/UX design**.
