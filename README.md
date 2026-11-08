@@ -11,6 +11,10 @@
 </p>
 
 <p align="center">
+  <img src="https://komarev.com/ghpvc/?username=Mufath&label=Profile%20Views&color=38BDF8&style=flat-square" alt="Profile Views" />
+</p>
+
+<p align="center">
   <a href="#-about-me">About Me</a> •
   <a href="#-tech-stack--tools">Tech Stack</a> •
   <a href="#-featured-projects">Projects</a> •
@@ -74,6 +78,10 @@
 </p>
 <!-- cool-readme:end -->
 
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Mufath&theme=dark&background=0D1117&border=30363D&stroke=30363D&ring=38BDF8&fire=38BDF8&currStreakNum=38BDF8&sideNums=F0F6FC&sideLabels=8B949E&dates=8B949E" alt="GitHub Streak" />
+</p>
+
 ---
 
 ### 🐍 Contribution Activity
@@ -83,6 +91,22 @@
     <source media="(prefers-color-scheme: dark)" srcset="./cards/github-contribution-grid-snake-dark.svg">
     <img src="./cards/github-contribution-grid-snake.svg" alt="GitHub Contribution Snake" width="100%">
   </picture>
+</p>
+
+<!--
+### 🏆 Certifications & Achievements
+(Tambahkan sertifikasi kamu di sini saat sudah ada)
+<p align="center">
+  <a href="URL_SERTIFIKAT"><img src="https://img.shields.io/badge/Nama_Sertifikat-Platform-blue?style=for-the-badge" /></a>
+</p>
+-->
+
+---
+
+### 💡 Daily Dev Inspiration
+
+<p align="center">
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark" alt="Daily Quote" />
 </p>
 
 ---
