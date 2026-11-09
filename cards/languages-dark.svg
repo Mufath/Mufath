@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="206" viewBox="0 0 400 206" fill="none" role="img" aria-labelledby="title desc">
 <title id="title">Most used languages</title>
-<desc id="desc">TypeScript 48.7%, Python 14.0%, JavaScript 11.6%, HTML 10.6%, Astro 7.6%, CSS 3.8%, Other 3.7%</desc>
+<desc id="desc">TypeScript 46.4%, Python 14.8%, JavaScript 11.0%, HTML 10.1%, Astro 7.3%, CSS 3.6%, Other 6.8%</desc>
 <style>
   text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif; fill: #f0f6fc; }
   .label { font-size: 14px; }
@@ -22,12 +22,12 @@
 <rect x="0.5" y="0.5" width="399" height="205" rx="6" fill="none" stroke="none"/>
 <text x="20" y="28" class="col">MOST USED LANGUAGES</text>
 <mask id="bar"><rect class="grow" x="20" y="48" width="360" height="10" rx="5" fill="#fff"/></mask>
-<g mask="url(#bar)"><rect x="20.00" y="48" width="169.54" height="10" fill="#3178c6"/><rect x="191.54" y="48" width="48.89" height="10" fill="#3572A5"/><rect x="242.43" y="48" width="40.27" height="10" fill="#f1e05a"/><rect x="284.69" y="48" width="36.97" height="10" fill="#e34c26"/><rect x="323.67" y="48" width="26.48" height="10" fill="#ff5a03"/><rect x="352.15" y="48" width="13.06" height="10" fill="#663399"/><rect x="367.21" y="48" width="12.79" height="10" fill="#6e7681"/></g>
-<g transform="translate(20 84)"><g class="fade" style="animation-delay: 200ms"><circle cx="5" cy="6" r="5" fill="#3178c6"/><text x="16" y="11" class="label">TypeScript <tspan class="secondary">48.7%</tspan></text></g></g>
-<g transform="translate(200 84)"><g class="fade" style="animation-delay: 270ms"><circle cx="5" cy="6" r="5" fill="#3572A5"/><text x="16" y="11" class="label">Python <tspan class="secondary">14.0%</tspan></text></g></g>
-<g transform="translate(20 116)"><g class="fade" style="animation-delay: 340ms"><circle cx="5" cy="6" r="5" fill="#f1e05a"/><text x="16" y="11" class="label">JavaScript <tspan class="secondary">11.6%</tspan></text></g></g>
-<g transform="translate(200 116)"><g class="fade" style="animation-delay: 410ms"><circle cx="5" cy="6" r="5" fill="#e34c26"/><text x="16" y="11" class="label">HTML <tspan class="secondary">10.6%</tspan></text></g></g>
-<g transform="translate(20 148)"><g class="fade" style="animation-delay: 480ms"><circle cx="5" cy="6" r="5" fill="#ff5a03"/><text x="16" y="11" class="label">Astro <tspan class="secondary">7.6%</tspan></text></g></g>
-<g transform="translate(200 148)"><g class="fade" style="animation-delay: 550ms"><circle cx="5" cy="6" r="5" fill="#663399"/><text x="16" y="11" class="label">CSS <tspan class="secondary">3.8%</tspan></text></g></g>
-<g transform="translate(20 180)"><g class="fade" style="animation-delay: 620ms"><circle cx="5" cy="6" r="5" fill="#6e7681"/><text x="16" y="11" class="label">Other <tspan class="secondary">3.7%</tspan></text></g></g>
+<g mask="url(#bar)"><rect x="20.00" y="48" width="161.56" height="10" fill="#3178c6"/><rect x="183.56" y="48" width="51.38" height="10" fill="#3572A5"/><rect x="236.94" y="48" width="38.37" height="10" fill="#f1e05a"/><rect x="277.31" y="48" width="35.23" height="10" fill="#e34c26"/><rect x="314.55" y="48" width="25.23" height="10" fill="#ff5a03"/><rect x="341.78" y="48" width="12.45" height="10" fill="#663399"/><rect x="356.23" y="48" width="23.77" height="10" fill="#6e7681"/></g>
+<g transform="translate(20 84)"><g class="fade" style="animation-delay: 200ms"><circle cx="5" cy="6" r="5" fill="#3178c6"/><text x="16" y="11" class="label">TypeScript <tspan class="secondary">46.4%</tspan></text></g></g>
+<g transform="translate(200 84)"><g class="fade" style="animation-delay: 270ms"><circle cx="5" cy="6" r="5" fill="#3572A5"/><text x="16" y="11" class="label">Python <tspan class="secondary">14.8%</tspan></text></g></g>
+<g transform="translate(20 116)"><g class="fade" style="animation-delay: 340ms"><circle cx="5" cy="6" r="5" fill="#f1e05a"/><text x="16" y="11" class="label">JavaScript <tspan class="secondary">11.0%</tspan></text></g></g>
+<g transform="translate(200 116)"><g class="fade" style="animation-delay: 410ms"><circle cx="5" cy="6" r="5" fill="#e34c26"/><text x="16" y="11" class="label">HTML <tspan class="secondary">10.1%</tspan></text></g></g>
+<g transform="translate(20 148)"><g class="fade" style="animation-delay: 480ms"><circle cx="5" cy="6" r="5" fill="#ff5a03"/><text x="16" y="11" class="label">Astro <tspan class="secondary">7.3%</tspan></text></g></g>
+<g transform="translate(200 148)"><g class="fade" style="animation-delay: 550ms"><circle cx="5" cy="6" r="5" fill="#663399"/><text x="16" y="11" class="label">CSS <tspan class="secondary">3.6%</tspan></text></g></g>
+<g transform="translate(20 180)"><g class="fade" style="animation-delay: 620ms"><circle cx="5" cy="6" r="5" fill="#6e7681"/><text x="16" y="11" class="label">Other <tspan class="secondary">6.8%</tspan></text></g></g>
 </svg>
