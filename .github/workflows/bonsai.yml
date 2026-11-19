@@ -35,6 +35,7 @@ jobs:
   update-bonsai:
     if: >-
       github.event_name != 'issues' ||
+      contains(github.event.issue.title, 'Water Bonsai') ||
       contains(github.event.issue.title, 'Siram Bonsai') ||
       contains(github.event.issue.title, 'water-bonsai') ||
       contains(join(github.event.issue.labels.*.name, ','), 'water-bonsai')

@@ -1,4 +1,4 @@
-"""Community Bonsai state manager and SVG card generator."""
+"""Community Bonsai state manager and Apple-inspired SVG widget generator."""
 
 from __future__ import annotations
 
@@ -7,7 +7,6 @@ import html
 import json
 import os
 import re
-import sys
 import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -24,15 +23,6 @@ DAILY_MOISTURE_DECAY = 15
 BASE_WATER_XP = 10
 RESCUE_BONUS_XP = 5
 
-LEVEL_NAMES: Dict[int, str] = {
-    1: "Bibit",
-    2: "Tunas",
-    3: "Bonsai Muda",
-    4: "Bonsai Mekar",
-    5: "Bonsai Kuno",
-}
-
-# Minimum cumulative XP required to reach each level.
 LEVEL_THRESHOLDS: Dict[int, int] = {
     1: 0,
     2: 30,
@@ -41,11 +31,104 @@ LEVEL_THRESHOLDS: Dict[int, int] = {
     5: 300,
 }
 
-HEALTH_META: Dict[str, Dict[str, str]] = {
-    "subur": {"label": "Subur", "color": "#22C55E", "hint": "Daun rimbun & bercahaya"},
-    "segar": {"label": "Segar", "color": "#38BDF8", "hint": "Kelembaban terjaga baik"},
-    "haus": {"label": "Haus", "color": "#F59E0B", "hint": "Mulai kering, butuh air!"},
-    "layu": {"label": "Layu", "color": "#EF4444", "hint": "Kritis! Selamatkan dengan siram"},
+HEALTH_COLORS: Dict[str, str] = {
+    "subur": "#34D399",
+    "segar": "#38BDF8",
+    "haus": "#FBBF24",
+    "layu": "#FB7185",
+}
+
+TRANSLATIONS: Dict[str, Dict[str, Any]] = {
+    "en": {
+        "widget_header": "COMMUNITY BONSAI",
+        "stage_prefix": "STAGE",
+        "moisture_unit": "MOISTURE",
+        "growth_prefix": "Growth",
+        "xp_max": "MAX",
+        "views_label": "PROFILE VIEWS",
+        "watered_label": "WATERED",
+        "lurkers_label": "JUST LOOKING",
+        "last_watered": "Last watered by @{user} ({rel})",
+        "no_waterings": "Waiting for the first drop — click below to water!",
+        "levels": {
+            1: "Sprout",
+            2: "Sapling",
+            3: "Young Bonsai",
+            4: "Blooming Bonsai",
+            5: "Ancient Bonsai",
+        },
+        "health": {
+            "subur": "THRIVING",
+            "segar": "HEALTHY",
+            "haus": "THIRSTY",
+            "layu": "WILTED",
+        },
+        "time": {
+            "just_now": "just now",
+            "m": "{n}m ago",
+            "h": "{n}h ago",
+            "d": "{n}d ago",
+        },
+        "comment_cooldown": (
+            "Thanks @{user}! You already watered the bonsai recently.\n\n"
+            "Please wait about **{minutes} minute(s)** before watering again so it doesn't get overwatered.\n\n"
+            "- **Stage:** Lv.{level} ({stage})\n"
+            "- **Moisture:** {moisture}% ({health})"
+        ),
+        "comment_watered_header": "Thanks @{user} for watering the Community Bonsai! 💧🌱",
+        "comment_xp": "- **XP gained:** +{xp} XP",
+        "comment_rescue": " *(Rescue Bonus for saving a thirsty bonsai!)*",
+        "comment_level_up": "- 🎉 **LEVEL UP!** The bonsai grew from **Lv.{old}** to **Lv.{new} ({stage})**!",
+        "comment_level_cur": "- **Current stage:** Lv.{level} ({stage}) — {xp} XP",
+        "comment_moisture": "- **Moisture:** {moisture}% ({health})",
+        "comment_total": "- **Total community waterings:** {total}x",
+        "comment_footer": "This issue was closed automatically. Visit [@Mufath](https://github.com/Mufath) to see the updated widget!",
+    },
+    "id": {
+        "widget_header": "COMMUNITY BONSAI",
+        "stage_prefix": "TAHAP",
+        "moisture_unit": "AIR",
+        "growth_prefix": "Pertumbuhan",
+        "xp_max": "MAKS",
+        "views_label": "DILIHAT",
+        "watered_label": "DISIRAM",
+        "lurkers_label": "CUMA LIAT",
+        "last_watered": "Disiram terakhir oleh @{user} ({rel})",
+        "no_waterings": "Belum ada yang menyiram — klik tombol di bawah!",
+        "levels": {
+            1: "Bibit",
+            2: "Tunas",
+            3: "Bonsai Muda",
+            4: "Bonsai Mekar",
+            5: "Bonsai Kuno",
+        },
+        "health": {
+            "subur": "SUBUR",
+            "segar": "SEGAR",
+            "haus": "HAUS",
+            "layu": "LAYU",
+        },
+        "time": {
+            "just_now": "baru saja",
+            "m": "{n}m lalu",
+            "h": "{n}j lalu",
+            "d": "{n}h lalu",
+        },
+        "comment_cooldown": (
+            "Terima kasih @{user}! Bonsai baru saja kamu siram sebelumnya.\n\n"
+            "Tunggu sekitar **{minutes} menit** lagi sebelum menyiram ulang agar tanaman tidak overwatering.\n\n"
+            "- **Tahap:** Lv.{level} ({stage})\n"
+            "- **Kelembaban:** {moisture}% ({health})"
+        ),
+        "comment_watered_header": "Terima kasih @{user} sudah menyiram Community Bonsai! 💧🌱",
+        "comment_xp": "- **XP didapat:** +{xp} XP",
+        "comment_rescue": " *(Rescue Bonus karena tanaman sedang haus/layu!)*",
+        "comment_level_up": "- 🎉 **LEVEL UP!** Bonsai tumbuh dari **Lv.{old}** ke **Lv.{new} ({stage})**!",
+        "comment_level_cur": "- **Tahap saat ini:** Lv.{level} ({stage}) — {xp} XP",
+        "comment_moisture": "- **Kelembaban air:** {moisture}% ({health})",
+        "comment_total": "- **Total siraman komunitas:** {total}x",
+        "comment_footer": "Issue ini ditutup otomatis. Kunjungi [@Mufath](https://github.com/Mufath) untuk melihat tampilan terbaru!",
+    },
 }
 
 
@@ -78,7 +161,7 @@ def compute_level(xp: int) -> int:
 
 
 def compute_health(moisture: int) -> str:
-    """Determine health status string from moisture percentage (0-100)."""
+    """Determine health status key from moisture percentage (0-100)."""
     if moisture >= 80:
         return "subur"
     if moisture >= 45:
@@ -250,21 +333,21 @@ def decay_bonsai(
     }
 
 
-def _relative_time_id(ts_str: Optional[str], now: datetime) -> str:
+def _relative_time(ts_str: Optional[str], now: datetime, lang: str) -> str:
+    t = TRANSLATIONS.get(lang, TRANSLATIONS["en"])["time"]
     parsed = _parse_iso(ts_str)
     if parsed is None:
         return "-"
     diff_sec = max(0, int((now - parsed).total_seconds()))
     if diff_sec < 60:
-        return "baru saja"
+        return t["just_now"]
     minutes = diff_sec // 60
     if minutes < 60:
-        return f"{minutes}m lalu"
+        return t["m"].format(n=minutes)
     hours = minutes // 60
     if hours < 24:
-        return f"{hours}j lalu"
-    days = hours // 24
-    return f"{days}h lalu"
+        return t["h"].format(n=hours)
+    return t["d"].format(n=hours // 24)
 
 
 def _truncate(text: str, max_len: int) -> str:
@@ -273,9 +356,9 @@ def _truncate(text: str, max_len: int) -> str:
     return text[: max_len - 1] + "…"
 
 
-def _next_level_progress(level: int, xp: int) -> Tuple[float, str]:
+def _next_level_progress(level: int, xp: int, max_word: str) -> Tuple[float, str]:
     if level >= 5:
-        return 100.0, f"{xp} XP • MAX"
+        return 100.0, f"{xp} XP • {max_word}"
     cur_floor = LEVEL_THRESHOLDS[level]
     next_target = LEVEL_THRESHOLDS[level + 1]
     span = max(1, next_target - cur_floor)
@@ -286,120 +369,171 @@ def _next_level_progress(level: int, xp: int) -> Tuple[float, str]:
 def render_svg_card(
     state: Dict[str, Any],
     theme: str = "dark",
+    lang: str = "en",
     now: Optional[datetime] = None,
 ) -> str:
-    """Generate the full 800x260 Community Bonsai SVG card for light or dark theme."""
+    """Generate the Apple-style 800x260 Community Bonsai frosted glass widget SVG."""
     current = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     is_dark = theme == "dark"
+    tr = TRANSLATIONS.get(lang, TRANSLATIONS["en"])
 
     level = max(1, min(5, int(state.get("level", 1))))
     xp = max(0, int(state.get("xp", 0)))
     moisture = max(0, min(100, int(state.get("moisture", 75))))
     health = state.get("health") or compute_health(moisture)
-    if health not in HEALTH_META:
+    if health not in HEALTH_COLORS:
         health = compute_health(moisture)
 
     total_waterings = max(0, int(state.get("total_waterings", 0)))
     raw_views = max(0, int(state.get("last_known_views", 0)))
     views = max(raw_views, total_waterings)
     lurkers = max(0, views - total_waterings)
-    care_pct = (total_waterings / views * 100.0) if views > 0 else 0.0
 
-    stage_name = LEVEL_NAMES.get(level, "Bibit")
-    health_info = HEALTH_META[health]
-    health_color = health_info["color"]
-    health_label = health_info["label"]
+    stage_name = tr["levels"].get(level, tr["levels"][1])
+    health_label = tr["health"].get(health, tr["health"]["segar"])
+    health_color = HEALTH_COLORS[health]
 
-    xp_pct, xp_label = _next_level_progress(level, xp)
-    moisture_bar_w = round(486 * (moisture / 100.0), 1)
-    xp_bar_w = round(486 * (xp_pct / 100.0), 1)
-
-    # Theme tokens aligned with Mufath's GitHub Profile & cool-readme cards.
-    card_bg = "#0D1117" if is_dark else "#FFFFFF"
-    card_border = "#30363D" if is_dark else "#D0D7DE"
-    habitat_bg = "#111824" if is_dark else "#F6F8FA"
-    tile_bg = "#161B22" if is_dark else "#F6F8FA"
-    tile_border = "#262C36" if is_dark else "#E1E4E8"
-    track_bg = "#21262D" if is_dark else "#EAECEF"
-    text_primary = "#F0F6FC" if is_dark else "#1F2328"
-    text_secondary = "#8B949E" if is_dark else "#59636E"
-    accent = "#38BDF8" if is_dark else "#0969DA"
-    xp_color = "#A855F7" if is_dark else "#8250DF"
-    glow_color = health_color
+    xp_pct, xp_label = _next_level_progress(level, xp, tr["xp_max"])
+    xp_bar_w = round(414 * (xp_pct / 100.0), 1)
 
     last_user = state.get("last_watered_by")
     if last_user:
-        rel = _relative_time_id(state.get("last_watered_at"), current)
-        footer_left = f"Penyiram terakhir: @{html.escape(_truncate(str(last_user), 18))} ({rel})"
+        rel = _relative_time(state.get("last_watered_at"), current, lang)
+        card1_sub = tr["last_watered"].format(
+            user=_truncate(str(last_user), 18),
+            rel=rel,
+        )
     else:
-        footer_left = "Belum ada penyiram — jadilah yang pertama!"
+        card1_sub = tr["no_waterings"]
+
+    # Apple StandBy / VisionOS-inspired frosted atmospheric tokens.
+    if is_dark:
+        mesh_start = "#2D233E"
+        mesh_mid = "#1D2B44"
+        mesh_end = "#101827"
+        bloom_a = "#9D6B84"
+        bloom_b = "#38BDF8"
+        rim_top = "rgba(255,255,255,0.42)"
+        rim_bot = "rgba(255,255,255,0.10)"
+        outer_halo = "rgba(255,255,255,0.08)"
+        card1_top = "#242D40"
+        card1_bot = "#1B2233"
+        card1_opacity = "0.90"
+        card1_border = "rgba(255,255,255,0.22)"
+        card1_text = "#F5F5F7"
+        card1_muted = "#A1A1AA"
+        card2_top = "#27324A"
+        card2_bot = "#1B2438"
+        card2_opacity = "0.66"
+        card2_border = "rgba(255,255,255,0.26)"
+        card2_text = "#F5F5F7"
+        card2_muted = "#CBD5E1"
+        divider_color = "rgba(255,255,255,0.14)"
+        track_bg = "rgba(255,255,255,0.14)"
+        xp_fill = "#38BDF8"
+        icon_box_stroke = "#F5F5F7"
+        hero_text = "#FFFFFF"
+        hero_muted = "rgba(255,255,255,0.72)"
+    else:
+        mesh_start = "#D8A7B1"
+        mesh_mid = "#6F88A6"
+        mesh_end = "#334E70"
+        bloom_a = "#F7CAD4"
+        bloom_b = "#7DD3FC"
+        rim_top = "rgba(255,255,255,0.92)"
+        rim_bot = "rgba(255,255,255,0.34)"
+        outer_halo = "rgba(15,23,42,0.10)"
+        card1_top = "#FFFFFF"
+        card1_bot = "#F8FAFC"
+        card1_opacity = "0.94"
+        card1_border = "rgba(255,255,255,0.95)"
+        card1_text = "#1D1D1F"
+        card1_muted = "#6E6E73"
+        card2_top = "#FFFFFF"
+        card2_bot = "#DCE6F2"
+        card2_opacity = "0.74"
+        card2_border = "rgba(255,255,255,0.78)"
+        card2_text = "#1D1D1F"
+        card2_muted = "#475569"
+        divider_color = "rgba(29,29,31,0.12)"
+        track_bg = "rgba(29,29,31,0.10)"
+        xp_fill = "#007AFF"
+        icon_box_stroke = "#1D1D1F"
+        hero_text = "#FFFFFF"
+        hero_muted = "rgba(255,255,255,0.78)"
 
     pixels_svg = render_bonsai_pixels(
         level=level,
         health=health,
         theme=theme,
-        origin_x=46,
-        origin_y=40,
-        pixel_size=7,
+        origin_x=93,
+        origin_y=52,
+        pixel_size=5,
     )
-
-    # Ambient sparkles / droplets inside the habitat for visual life.
-    if health in ("subur", "segar"):
-        ambient_svg = (
-            f'<circle cx="52" cy="56" r="2.2" fill="{accent}" class="float-a"/>'
-            f'<circle cx="236" cy="72" r="1.8" fill="{health_color}" class="float-b"/>'
-            f'<circle cx="220" cy="48" r="1.5" fill="{accent}" class="float-c"/>'
-        )
-    elif health == "haus":
-        ambient_svg = (
-            f'<rect x="180" y="28" width="78" height="20" rx="10" fill="{card_bg}" stroke="{health_color}" stroke-width="1"/>'
-            f'<text x="219" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="{health_color}">Butuh Air</text>'
-        )
-    else:
-        ambient_svg = (
-            f'<rect x="172" y="28" width="86" height="20" rx="10" fill="{card_bg}" stroke="{health_color}" stroke-width="1"/>'
-            f'<text x="215" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="{health_color}">Darurat Air!</text>'
-        )
 
     title_text = html.escape(f"Community Bonsai Lv.{level} {stage_name}")
     desc_text = html.escape(
-        f"Kelembaban {moisture}%, Status {health_label}, "
-        f"Views {views}, Siram {total_waterings}, Cuma Liat {lurkers}."
+        f"Moisture {moisture}%, Status {health_label}, "
+        f"Views {views}, Watered {total_waterings}, Just Looking {lurkers}."
     )
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="800" height="260" viewBox="0 0 800 260" fill="none" role="img" aria-labelledby="bonsai-title bonsai-desc">
   <title id="bonsai-title">{title_text}</title>
   <desc id="bonsai-desc">{desc_text}</desc>
   <defs>
-    <radialGradient id="habitat-glow" cx="50%" cy="52%" r="55%">
-      <stop offset="0%" stop-color="{glow_color}" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="{glow_color}" stop-opacity="0"/>
+    <linearGradient id="apple-mesh" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="{mesh_start}"/>
+      <stop offset="48%" stop-color="{mesh_mid}"/>
+      <stop offset="100%" stop-color="{mesh_end}"/>
+    </linearGradient>
+    <radialGradient id="bloom-rose" cx="16%" cy="20%" r="48%">
+      <stop offset="0%" stop-color="{bloom_a}" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="{bloom_a}" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="bloom-sky" cx="78%" cy="82%" r="55%">
+      <stop offset="0%" stop-color="{bloom_b}" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="{bloom_b}" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glass-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="{rim_top}"/>
+      <stop offset="55%" stop-color="{rim_bot}"/>
+      <stop offset="100%" stop-color="{rim_top}"/>
+    </linearGradient>
+    <linearGradient id="card1-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{card1_top}" stop-opacity="{card1_opacity}"/>
+      <stop offset="100%" stop-color="{card1_bot}" stop-opacity="{card1_opacity}"/>
+    </linearGradient>
+    <linearGradient id="card2-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{card2_top}" stop-opacity="{card2_opacity}"/>
+      <stop offset="100%" stop-color="{card2_bot}" stop-opacity="{card2_opacity}"/>
+    </linearGradient>
+    <clipPath id="shell-clip">
+      <rect x="6" y="6" width="788" height="248" rx="34"/>
+    </clipPath>
+    <filter id="soft-grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="monoNoise"/>
+      <feComponentTransfer in="monoNoise" result="alphaNoise">
+        <feFuncA type="table" tableValues="0 0.045"/>
+      </feComponentTransfer>
+    </filter>
   </defs>
   <style>
     text {{
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif;
     }}
-    .mono {{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    .num {{
       font-variant-numeric: tabular-nums;
     }}
     .bar-anim {{
       transform-box: fill-box;
       transform-origin: left center;
-      animation: growX 0.9s cubic-bezier(.2,.7,.2,1) both;
+      animation: growX 0.85s cubic-bezier(.22,1,.36,1) both;
     }}
-    .float-a {{ animation: floatY 3.2s ease-in-out infinite; }}
-    .float-b {{ animation: floatY 4.1s ease-in-out 0.6s infinite; }}
-    .float-c {{ animation: floatY 2.8s ease-in-out 1.1s infinite; }}
-    .pulse-dot {{ animation: pulseDot 2.2s ease-in-out infinite; }}
+    .pulse-dot {{ animation: pulseDot 2.4s ease-in-out infinite; }}
     @keyframes growX {{ from {{ transform: scaleX(0); }} to {{ transform: scaleX(1); }} }}
-    @keyframes floatY {{
-      0%, 100% {{ transform: translateY(0px); opacity: 0.45; }}
-      50% {{ transform: translateY(-5px); opacity: 0.95; }}
-    }}
     @keyframes pulseDot {{
-      0%, 100% {{ opacity: 0.65; }}
+      0%, 100% {{ opacity: 0.7; }}
       50% {{ opacity: 1; }}
     }}
     @media (prefers-reduced-motion: reduce) {{
@@ -407,68 +541,62 @@ def render_svg_card(
     }}
   </style>
 
-  <!-- Outer Card -->
-  <rect x="0.5" y="0.5" width="799" height="259" rx="12" fill="{card_bg}" stroke="{card_border}"/>
+  <!-- Outer subtle Apple bezel halo -->
+  <rect x="2" y="2" width="796" height="256" rx="37" stroke="{outer_halo}" stroke-width="2"/>
 
-  <!-- Left Habitat Panel -->
-  <rect x="18" y="18" width="252" height="224" rx="10" fill="{habitat_bg}" stroke="{tile_border}"/>
-  <rect x="18" y="18" width="252" height="224" rx="10" fill="url(#habitat-glow)"/>
-  {ambient_svg}
+  <!-- Main Atmospheric Frosted Widget Shell -->
+  <g clip-path="url(#shell-clip)">
+    <rect x="6" y="6" width="788" height="248" rx="34" fill="url(#apple-mesh)"/>
+    <rect x="6" y="6" width="788" height="248" rx="34" fill="url(#bloom-rose)"/>
+    <rect x="6" y="6" width="788" height="248" rx="34" fill="url(#bloom-sky)"/>
+    <rect x="6" y="6" width="788" height="248" filter="url(#soft-grain)"/>
+  </g>
+  <rect x="6" y="6" width="788" height="248" rx="34" stroke="url(#glass-rim)" stroke-width="2.2"/>
+
+  <!-- Left Hero Zone -->
+  <circle cx="40" cy="36" r="4" fill="{health_color}" class="pulse-dot"/>
+  <text x="52" y="40" font-size="11.5" font-weight="700" fill="{hero_muted}" letter-spacing="0.08em">{html.escape(tr['stage_prefix'])} {level}/5 • {html.escape(stage_name.upper())}</text>
+
+  <!-- Bonsai Pixel Art -->
   <g shape-rendering="crispEdges">
     {pixels_svg}
   </g>
-  <text x="144" y="229" text-anchor="middle" font-size="11.5" font-weight="600" fill="{text_secondary}">Stage {level}/5 • {html.escape(stage_name)}</text>
 
-  <!-- Right Panel Header -->
-  <g transform="translate(292 27)" fill="{health_color}">
-    <path d="M7 13V7.5C7 4.8 4.8 3 2 3c0 2.8 1.8 4.8 4.5 5M7 9.5C7 6.5 9.2 4.5 12 4.5c0 2.8-1.8 4.8-4.5 5" stroke="{health_color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  </g>
-  <text x="311" y="40" font-size="15" font-weight="700" fill="{text_primary}" letter-spacing="0.02em">COMMUNITY BONSAI</text>
-  <text x="292" y="57" font-size="11.5" fill="{text_secondary}">{html.escape(health_info['hint'])}</text>
+  <!-- Apple StandBy-style Status & Large Readout -->
+  <path d="M42 181.5s-4.5 4.8-4.5 7.5a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.5-4.5-7.5Z" fill="{health_color}"/>
+  <text x="53" y="193" font-size="13" font-weight="700" fill="{hero_text}" letter-spacing="0.06em">{html.escape(health_label)}</text>
+  <text x="36" y="233" font-size="38" font-weight="700" fill="{hero_text}" letter-spacing="-0.03em" class="num">{moisture}%<tspan dx="6" font-size="14" font-weight="600" letter-spacing="0.06em" fill="{hero_muted}">{html.escape(tr['moisture_unit'])}</tspan></text>
 
-  <!-- Health Pill -->
-  <rect x="688" y="24" width="94" height="24" rx="12" fill="{tile_bg}" stroke="{health_color}" stroke-opacity="0.65"/>
-  <circle cx="703" cy="36" r="4" fill="{health_color}" class="pulse-dot"/>
-  <text x="714" y="40" font-size="11.5" font-weight="600" fill="{text_primary}">{html.escape(health_label)}</text>
+  <!-- Right Stacked Apple Cards -->
+  <text x="322" y="39" font-size="12" font-weight="700" fill="{hero_muted}" letter-spacing="0.08em">{html.escape(tr['widget_header'])}</text>
 
-  <!-- Moisture Bar -->
-  <path d="M298 70.5c0 0-4.5 4.9-4.5 7.6a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.6-4.5-7.6Z" fill="{health_color}"/>
-  <text x="309" y="81" font-size="12" font-weight="600" fill="{text_primary}">Kelembaban Air</text>
-  <text x="778" y="81" text-anchor="end" font-size="12" font-weight="700" fill="{health_color}" class="mono">{moisture}%</text>
-  <rect x="292" y="89" width="486" height="9" rx="4.5" fill="{track_bg}"/>
-  <rect x="292" y="89" width="{moisture_bar_w}" height="9" rx="4.5" fill="{health_color}" class="bar-anim"/>
+  <!-- Card 1: Growth & Latest Watering -->
+  <rect x="316" y="50" width="450" height="82" rx="20" fill="url(#card1-fill)" stroke="{card1_border}" stroke-width="1.2"/>
+  <rect x="334" y="62" width="20" height="20" rx="6" stroke="{icon_box_stroke}" stroke-width="1.7" fill="none"/>
+  <path d="M339.5 72.3l3.1 3.1 6-6.2" stroke="{xp_fill}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="364" y="77" font-size="15" font-weight="600" fill="{card1_text}">{html.escape(tr['growth_prefix'])} • Lv.{level} {html.escape(stage_name)}</text>
+  <text x="748" y="77" text-anchor="end" font-size="13.5" font-weight="600" fill="{xp_fill}" class="num">{html.escape(xp_label)}</text>
+  <rect x="334" y="92" width="414" height="6" rx="3" fill="{track_bg}"/>
+  <rect x="334" y="92" width="{xp_bar_w}" height="6" rx="3" fill="{xp_fill}" class="bar-anim"/>
+  <text x="334" y="118" font-size="12" fill="{card1_muted}">{html.escape(card1_sub)}</text>
 
-  <!-- Growth XP Bar -->
-  <path d="M293 121.5c.8-4.8 4.2-8.2 9.5-8.8-.6 5.3-4 8.7-8.8 9.5l-.7-.7Z" fill="{xp_color}"/>
-  <text x="309" y="121" font-size="12" font-weight="600" fill="{text_primary}">Pertumbuhan (Lv.{level} {html.escape(stage_name)})</text>
-  <text x="778" y="121" text-anchor="end" font-size="12" font-weight="700" fill="{accent}" class="mono">{html.escape(xp_label)}</text>
-  <rect x="292" y="129" width="486" height="9" rx="4.5" fill="{track_bg}"/>
-  <rect x="292" y="129" width="{xp_bar_w}" height="9" rx="4.5" fill="{xp_color}" class="bar-anim"/>
+  <!-- Card 2: Frosted Glass Visitor Insights (Profile Views Replacement) -->
+  <rect x="316" y="144" width="450" height="74" rx="20" fill="url(#card2-fill)" stroke="{card2_border}" stroke-width="1.2"/>
+  <line x1="466" y1="158" x2="466" y2="204" stroke="{divider_color}" stroke-width="1"/>
+  <line x1="616" y1="158" x2="616" y2="204" stroke="{divider_color}" stroke-width="1"/>
 
-  <!-- Stats Grid (Profile Views Replacement) -->
-  <rect x="292" y="154" width="154" height="58" rx="8" fill="{tile_bg}" stroke="{tile_border}"/>
-  <path d="M304 168.5s2.4-4 6-4 6 4 6 4-2.4 4-6 4-6-4-6-4Z" stroke="{text_secondary}" stroke-width="1.3" fill="none"/>
-  <circle cx="310" cy="168.5" r="1.5" fill="{text_secondary}"/>
-  <text x="321" y="172" font-size="10.5" font-weight="600" fill="{text_secondary}" letter-spacing="0.04em">PROFILE VIEWS</text>
-  <text x="304" y="196" font-size="19" font-weight="700" fill="{text_primary}" class="mono">{views:,}</text>
-  <text x="436" y="195" text-anchor="end" font-size="10" fill="{text_secondary}">total</text>
+  <text x="391" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="{card2_muted}" letter-spacing="0.06em">{html.escape(tr['views_label'])}</text>
+  <text x="391" y="199" text-anchor="middle" font-size="22" font-weight="700" fill="{card2_text}" class="num">{views:,}</text>
 
-  <rect x="458" y="154" width="154" height="58" rx="8" fill="{tile_bg}" stroke="{tile_border}"/>
-  <path d="M474.5 163.5s-3.5 3.8-3.5 5.8a3.5 3.5 0 0 0 7 0c0-2-3.5-5.8-3.5-5.8Z" fill="{accent}"/>
-  <text x="484" y="172" font-size="10.5" font-weight="600" fill="{text_secondary}" letter-spacing="0.04em">SUDAH SIRAM</text>
-  <text x="470" y="196" font-size="19" font-weight="700" fill="{accent}" class="mono">{total_waterings:,}</text>
-  <text x="602" y="195" text-anchor="end" font-size="10" fill="{text_secondary}">{care_pct:.1f}%</text>
+  <text x="541" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="{card2_muted}" letter-spacing="0.06em">{html.escape(tr['watered_label'])}</text>
+  <text x="541" y="199" text-anchor="middle" font-size="22" font-weight="700" fill="{xp_fill}" class="num">{total_waterings:,}</text>
 
-  <rect x="624" y="154" width="154" height="58" rx="8" fill="{tile_bg}" stroke="{tile_border}"/>
-  <circle cx="641" cy="166.5" r="2.2" stroke="{text_secondary}" stroke-width="1.3" fill="none"/>
-  <path d="M636.5 172.5c.6-1.8 2.3-2.7 4.5-2.7s3.9.9 4.5 2.7" stroke="{text_secondary}" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-  <text x="651" y="172" font-size="10.5" font-weight="600" fill="{text_secondary}" letter-spacing="0.04em">CUMA LIAT</text>
-  <text x="636" y="196" font-size="19" font-weight="700" fill="{text_primary}" class="mono">{lurkers:,}</text>
-  <text x="768" y="195" text-anchor="end" font-size="10" fill="{text_secondary}">pasif</text>
+  <text x="691" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="{card2_muted}" letter-spacing="0.06em">{html.escape(tr['lurkers_label'])}</text>
+  <text x="691" y="199" text-anchor="middle" font-size="22" font-weight="700" fill="{card2_text}" class="num">{lurkers:,}</text>
 
-  <!-- Footer -->
-  <text x="292" y="236" font-size="11.5" fill="{text_secondary}">{footer_left}</text>
-  <text x="778" y="236" text-anchor="end" font-size="11" fill="{accent}">Klik "Siram Bonsai" ↓</text>
+  <!-- Bottom Apple Pager Indicator -->
+  <rect x="490" y="232" width="102" height="5" rx="2.5" fill="rgba(255,255,255,0.28)"/>
+  <rect x="528" y="232" width="38" height="5" rx="2.5" fill="#FFFFFF" fill-opacity="0.92"/>
 </svg>
 """
 
@@ -492,46 +620,68 @@ def save_state(path: Path, state: Dict[str, Any]) -> None:
         fh.write("\n")
 
 
-def write_cards(cards_dir: Path, state: Dict[str, Any], now: Optional[datetime] = None) -> None:
+def write_cards(
+    cards_dir: Path,
+    state: Dict[str, Any],
+    lang: str = "en",
+    now: Optional[datetime] = None,
+) -> None:
     """Write both dark and light bonsai SVG cards into cards_dir."""
     cards_dir.mkdir(parents=True, exist_ok=True)
     for theme in ("dark", "light"):
-        svg = render_svg_card(state, theme=theme, now=now)
+        svg = render_svg_card(state, theme=theme, lang=lang, now=now)
         (cards_dir / f"bonsai-{theme}.svg").write_text(svg, encoding="utf-8")
 
 
-def build_issue_comment(result: Dict[str, Any], state: Dict[str, Any]) -> str:
-    """Create a friendly Indonesian GitHub Issue reply summarizing the watering outcome."""
+def build_issue_comment(
+    result: Dict[str, Any],
+    state: Dict[str, Any],
+    lang: str = "en",
+) -> str:
+    """Create a friendly GitHub Issue reply summarizing the watering outcome."""
+    tr = TRANSLATIONS.get(lang, TRANSLATIONS["en"])
     user = result["user"]
-    stage_name = LEVEL_NAMES.get(state["level"], "Bibit")
-    health_label = HEALTH_META.get(state["health"], {}).get("label", state["health"])
+    stage_name = tr["levels"].get(state["level"], tr["levels"][1])
+    health_label = tr["health"].get(state["health"], state["health"]).title()
 
     if result["status"] == "cooldown":
-        return (
-            f"Terima kasih @{user}! ⏳ Bonsai baru saja kamu siram sebelumnya.\n\n"
-            f"Tunggu sekitar **{result['remaining_minutes']} menit** lagi sebelum menyiram ulang agar tanaman tidak overwatering.\n\n"
-            f"- **Level:** Lv.{state['level']} ({stage_name})\n"
-            f"- **Kelembaban:** {state['moisture']}% ({health_label})"
+        return tr["comment_cooldown"].format(
+            user=user,
+            minutes=result["remaining_minutes"],
+            level=state["level"],
+            stage=stage_name,
+            moisture=state["moisture"],
+            health=health_label,
         )
 
     lines = [
-        f"Terima kasih @{user} sudah menyiram Community Bonsai! 💧🌱",
+        tr["comment_watered_header"].format(user=user),
         "",
-        f"- **XP didapat:** +{result['xp_gained']} XP"
-        + (" *(Rescue Bonus karena tanaman sedang haus/layu!)*" if result.get("rescue_bonus") else ""),
+        tr["comment_xp"].format(xp=result["xp_gained"])
+        + (tr["comment_rescue"] if result.get("rescue_bonus") else ""),
     ]
     if result.get("leveled_up"):
         lines.append(
-            f"- 🎉 **LEVEL UP!** Bonsai tumbuh dari **Lv.{result['old_level']}** ke **Lv.{state['level']} ({stage_name})**!"
+            tr["comment_level_up"].format(
+                old=result["old_level"],
+                new=state["level"],
+                stage=stage_name,
+            )
         )
     else:
-        lines.append(f"- **Level saat ini:** Lv.{state['level']} ({stage_name}) — {state['xp']} XP")
+        lines.append(
+            tr["comment_level_cur"].format(
+                level=state["level"],
+                stage=stage_name,
+                xp=state["xp"],
+            )
+        )
     lines.extend(
         [
-            f"- **Kelembaban air:** {state['moisture']}% ({health_label})",
-            f"- **Total siraman komunitas:** {state['total_waterings']}x",
+            tr["comment_moisture"].format(moisture=state["moisture"], health=health_label),
+            tr["comment_total"].format(total=state["total_waterings"]),
             "",
-            "Issue ini ditutup otomatis. Cek lagi profil [@Mufath](https://github.com/Mufath) untuk melihat tampilan terbaru!",
+            tr["comment_footer"],
         ]
     )
     return "\n".join(lines)
@@ -560,6 +710,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     )
     parser.add_argument("--user", default="Mufath", help="GitHub username watering the bonsai.")
     parser.add_argument("--username", default="Mufath", help="GitHub profile username for Komarev views.")
+    parser.add_argument("--lang", choices=("en", "id"), default="en", help="Widget language.")
     parser.add_argument("--state", default="data/bonsai_state.json", help="Path to state JSON.")
     parser.add_argument("--cards-dir", default="cards", help="Directory for output SVG cards.")
     parser.add_argument("--force-decay", action="store_true", help="Decay even if already decayed today.")
@@ -581,7 +732,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     if args.mode == "water":
         result = water_bonsai(state, args.user, now=now)
-        comment = build_issue_comment(result, state)
+        comment = build_issue_comment(result, state, lang=args.lang)
     elif args.mode == "decay":
         result = decay_bonsai(state, now=now, force=args.force_decay)
     elif args.mode in ("sync", "render"):
@@ -589,7 +740,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         state["level"] = compute_level(int(state.get("xp", 0)))
 
     save_state(state_path, state)
-    write_cards(cards_dir, state, now=now)
+    write_cards(cards_dir, state, lang=args.lang, now=now)
 
     _write_github_output(
         {
@@ -597,14 +748,22 @@ def main(argv: Optional[List[str]] = None) -> int:
             "comment": comment,
         }
     )
-    print(json.dumps({"result": result, "state_summary": {
-        "level": state["level"],
-        "xp": state["xp"],
-        "moisture": state["moisture"],
-        "health": state["health"],
-        "total_waterings": state["total_waterings"],
-        "last_known_views": state["last_known_views"],
-    }}, ensure_ascii=False))
+    print(
+        json.dumps(
+            {
+                "result": result,
+                "state_summary": {
+                    "level": state["level"],
+                    "xp": state["xp"],
+                    "moisture": state["moisture"],
+                    "health": state["health"],
+                    "total_waterings": state["total_waterings"],
+                    "last_known_views": state["last_known_views"],
+                },
+            },
+            ensure_ascii=False,
+        )
+    )
     return 0
 
 

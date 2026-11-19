@@ -171,9 +171,10 @@ class BonsaiPalette:
 def get_palette(health: str, theme: str) -> BonsaiPalette:
     """Return pixel-art colors for the given health status and light/dark theme."""
     is_dark = theme == "dark"
-    pot_rim = "#38BDF8" if is_dark else "#0284C7"
-    pot_body = "#1E3A5F" if is_dark else "#0369A1"
-    pot_shadow = "#10233B" if is_dark else "#075985"
+    # Clean ceramic stoneware pot for high contrast against atmospheric dusk gradients.
+    pot_rim = "#F8FAFC" if is_dark else "#FFFFFF"
+    pot_body = "#CBD5E1" if is_dark else "#E2E8F0"
+    pot_shadow = "#94A3B8" if is_dark else "#94A3B8"
 
     if health == "layu":
         return BonsaiPalette(

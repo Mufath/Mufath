@@ -1,14 +1,14 @@
 ---
-name: "💧 Siram Community Bonsai"
-about: "Siram pohon bonsai digital di profil GitHub Mufath!"
-title: "[Siram Bonsai] 💧"
+name: "💧 Water Community Bonsai"
+about: "Water the digital bonsai tree on Mufath's GitHub profile!"
+title: "[Water Bonsai] 💧"
 labels: ["water-bonsai"]
 ---
 
-Terima kasih sudah mampir ke profil saya! 🌱
+Thanks for visiting my profile! 🌱
 
-Cukup klik tombol **"Submit new issue"** di bawah untuk menyiram Community Bonsai.
-GitHub Actions akan otomatis:
-1. Menambah kelembaban air (+25%) & XP pertumbuhan bonsai
-2. Memperbarui kartu SVG di profil
-3. Membalas dan menutup issue ini secara otomatis
+Just click **"Submit new issue"** below to water the Community Bonsai.
+GitHub Actions will automatically:
+1. Refill moisture (+25%) and add growth XP
+2. Refresh the bonsai widget on my profile
+3. Reply with the updated stats and close this issue automatically

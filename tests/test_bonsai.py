@@ -117,13 +117,27 @@ class TestBonsaiState(unittest.TestCase):
                 state["last_watered_at"] = "2026-11-19T11:30:00Z"
 
                 for theme in ("dark", "light"):
-                    svg = bonsai.render_svg_card(state, theme=theme, now=now)
-                    root = ET.fromstring(svg)
-                    self.assertTrue(root.tag.endswith("svg"))
-                    self.assertIn("120", svg)
-                    self.assertIn("18", svg)
-                    self.assertIn("102", svg)  # lurkers = 120 - 18
-                    self.assertNotIn("<script>", svg)
+                    for lang in ("en", "id"):
+                        svg = bonsai.render_svg_card(state, theme=theme, lang=lang, now=now)
+                        root = ET.fromstring(svg)
+                        self.assertTrue(root.tag.endswith("svg"))
+                        self.assertIn("120", svg)
+                        self.assertIn("18", svg)
+                        self.assertIn("102", svg)  # lurkers = 120 - 18
+                        self.assertNotIn("<script>", svg)
+
+        en_comment = bonsai.build_issue_comment(
+            {"status": "watered", "user": "Bob", "xp_gained": 10, "rescue_bonus": False, "leveled_up": False},
+            bonsai.default_state(now=now),
+            lang="en",
+        )
+        self.assertIn("Thanks @Bob", en_comment)
+        id_comment = bonsai.build_issue_comment(
+            {"status": "watered", "user": "Bob", "xp_gained": 10, "rescue_bonus": False, "leveled_up": False},
+            bonsai.default_state(now=now),
+            lang="id",
+        )
+        self.assertIn("Terima kasih @Bob", id_comment)
 
 
 if __name__ == "__main__":
