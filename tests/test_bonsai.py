@@ -16,16 +16,14 @@ import bonsai_art  # noqa: E402
 
 
 class TestBonsaiArt(unittest.TestCase):
-    def test_stage_grids_dimensions(self) -> None:
-        self.assertEqual(set(bonsai_art.STAGE_GRIDS.keys()), {1, 2, 3, 4, 5})
-        for level, grid in bonsai_art.STAGE_GRIDS.items():
-            self.assertEqual(len(grid), bonsai_art.GRID_HEIGHT, f"Level {level} row count mismatch")
-            for idx, row in enumerate(grid):
-                self.assertEqual(
-                    len(row),
-                    bonsai_art.GRID_WIDTH,
-                    f"Level {level} row {idx} width mismatch",
-                )
+    def test_all_stages_render_valid_svg_group(self) -> None:
+        for level in (1, 2, 3, 4, 5):
+            for health in ("subur", "segar", "haus", "layu"):
+                for theme in ("dark", "light"):
+                    markup = bonsai_art.render_bonsai_illustration(level, health, theme)
+                    wrapped = f'<svg xmlns="http://www.w3.org/2000/svg">{markup}</svg>'
+                    root = ET.fromstring(wrapped)
+                    self.assertTrue(root.tag.endswith("svg"))
 
 
 class TestBonsaiState(unittest.TestCase):
@@ -58,13 +56,11 @@ class TestBonsaiState(unittest.TestCase):
         self.assertEqual(state["health"], "subur")
         self.assertEqual(state["total_waterings"], 1)
 
-        # Within 1-hour cooldown should be blocked.
         res_cd = bonsai.water_bonsai(state, "alice", now=t0 + timedelta(minutes=20))
         self.assertEqual(res_cd["status"], "cooldown")
         self.assertEqual(res_cd["remaining_minutes"], 40)
         self.assertEqual(state["total_waterings"], 1)
 
-        # After cooldown expires, another user or same user can water again.
         res2 = bonsai.water_bonsai(state, "Alice", now=t0 + timedelta(hours=1, minutes=1))
         self.assertEqual(res2["status"], "watered")
         self.assertEqual(state["total_waterings"], 2)
@@ -83,7 +79,7 @@ class TestBonsaiState(unittest.TestCase):
         self.assertEqual(state["health"], "segar")
 
     def test_decay_idempotent_per_wib_day(self) -> None:
-        t0 = datetime(2026, 11, 19, 17, 5, tzinfo=timezone.utc)  # 00:05 WIB Nov 20
+        t0 = datetime(2026, 11, 19, 17, 5, tzinfo=timezone.utc)
         state = bonsai.default_state(now=t0)
         res1 = bonsai.decay_bonsai(state, now=t0)
         self.assertEqual(res1["status"], "decayed")
@@ -102,7 +98,7 @@ class TestBonsaiState(unittest.TestCase):
         self.assertEqual(bonsai.parse_komarev_svg(sample), 1234)
         self.assertIsNone(bonsai.parse_komarev_svg("<svg></svg>"))
 
-    def test_render_svg_card_valid_xml_all_variants(self) -> None:
+    def test_render_svg_card_and_cta_valid_xml_all_variants(self) -> None:
         now = datetime(2026, 11, 19, 12, 0, tzinfo=timezone.utc)
         for level in (1, 2, 3, 4, 5):
             for health, moisture in (("subur", 90), ("segar", 65), ("haus", 30), ("layu", 5)):
@@ -123,8 +119,12 @@ class TestBonsaiState(unittest.TestCase):
                         self.assertTrue(root.tag.endswith("svg"))
                         self.assertIn("120", svg)
                         self.assertIn("18", svg)
-                        self.assertIn("102", svg)  # lurkers = 120 - 18
+                        self.assertIn("102", svg)
                         self.assertNotIn("<script>", svg)
+
+                        cta = bonsai.render_cta_button(theme=theme, lang=lang)
+                        cta_root = ET.fromstring(cta)
+                        self.assertTrue(cta_root.tag.endswith("svg"))
 
         en_comment = bonsai.build_issue_comment(
             {"status": "watered", "user": "Bob", "xp_gained": 10, "rescue_bonus": False, "leveled_up": False},
