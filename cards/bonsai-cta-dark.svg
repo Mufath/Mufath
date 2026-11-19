@@ -1,10 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="176" height="38" viewBox="0 0 176 38" fill="none" role="img" aria-label="Water this bonsai">
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="38" viewBox="0 0 180 38" fill="none" role="img" aria-label="Water this bonsai">
+  <defs>
+    <linearGradient id="cta-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1890FF"/>
+      <stop offset="100%" stop-color="#0A84FF"/>
+    </linearGradient>
+    <linearGradient id="cta-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.28)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.04)"/>
+    </linearGradient>
+  </defs>
   <style>
     text {
       font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif;
     }
   </style>
-  <rect x="0.5" y="0.5" width="175" height="37" rx="18.5" fill="#F5F5F7" stroke="rgba(255,255,255,0.12)"/>
-  <path d="M27 12.8s-4.2 4.6-4.2 7.1a4.2 4.2 0 0 0 8.4 0c0-2.5-4.2-7.1-4.2-7.1Z" stroke="#1D1D1F" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-  <text x="41" y="23.5" font-size="13" font-weight="500" fill="#1D1D1F">Water this bonsai</text>
+  <rect x="0.5" y="0.5" width="179" height="37" rx="18.5" fill="url(#cta-grad)" stroke="url(#cta-rim)"/>
+  <path d="M29 12.8s-4.2 4.6-4.2 7.1a4.2 4.2 0 0 0 8.4 0c0-2.5-4.2-7.1-4.2-7.1Z" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <text x="43" y="23.5" font-size="13" font-weight="500" fill="#FFFFFF">Water this bonsai</text>
 </svg>

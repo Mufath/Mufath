@@ -376,7 +376,7 @@ def render_svg_card(
     lang: str = "en",
     now: Optional[datetime] = None,
 ) -> str:
-    """Generate a calm Apple-style 800x256 Community Bonsai SVG widget."""
+    """Generate an Apple-crafted 800x256 Community Bonsai widget SVG."""
     current = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     is_dark = theme == "dark"
     tr = TRANSLATIONS.get(lang, TRANSLATIONS["en"])
@@ -393,38 +393,64 @@ def render_svg_card(
     views = max(raw_views, total_waterings)
     lurkers = max(0, views - total_waterings)
     care_pct = (total_waterings / views * 100.0) if views > 0 else 0.0
+    lurker_pct = 100.0 - care_pct if views > 0 else 0.0
 
     stage_name = tr["levels"].get(level, tr["levels"][1])
     health_label = tr["health"].get(health, tr["health"]["segar"])
     status_color = STATUS_COLORS[health][0 if is_dark else 1]
 
     xp_pct, xp_label = _next_level_progress(level, xp, tr["xp_max"])
-    xp_bar_w = round(176 * (xp_pct / 100.0), 1)
-    share_bar_w = round(456 * (total_waterings / views), 1) if views > 0 else 0.0
-    if total_waterings > 0 and share_bar_w < 6.0:
-        share_bar_w = 6.0
+    xp_bar_w = round(184 * (xp_pct / 100.0), 1)
 
-    # Apple System neutral ramps (Graphite dark / Paper light) + single blue accent.
+    # Apple Storage-style proportional bar (456px total width, 2px gap when both > 0)
+    if views > 0 and total_waterings > 0 and lurkers > 0:
+        watered_w = max(12.0, round(454 * (total_waterings / views), 1))
+        watered_w = min(442.0, watered_w)
+        lurker_x = 312 + watered_w + 2.0
+        lurker_w = max(12.0, round(768 - lurker_x, 1))
+    elif total_waterings > 0:
+        watered_w = 456.0
+        lurker_x = 768.0
+        lurker_w = 0.0
+    else:
+        watered_w = 0.0
+        lurker_x = 312.0
+        lurker_w = 456.0
+
+    # Apple HIG dark (Sequoia Graphite) & light (iOS Paper) surface tokens.
     if is_dark:
-        shell_bg = "#1C1C1E"
-        card_bg = "#2C2C2E"
-        track_bg = "#3A3A3C"
-        hairline = "rgba(255,255,255,0.09)"
+        shell_top = "#242426"
+        shell_bot = "#1B1B1D"
+        card_top = "#2F2F32"
+        card_bot = "#28282A"
+        bevel_top = "rgba(255,255,255,0.20)"
+        bevel_bot = "rgba(255,255,255,0.05)"
+        card_bevel_top = "rgba(255,255,255,0.14)"
+        card_bevel_bot = "rgba(255,255,255,0.04)"
+        track_bg = "#3A3A3D"
+        lurker_seg = "#545458"
         text_primary = "#F5F5F7"
-        text_secondary = "#A1A1A6"
+        text_secondary = "#AEAEB2"
         text_muted = "#8E8E93"
         accent = "#0A84FF"
+        pill_bg = "rgba(255,255,255,0.07)"
     else:
-        shell_bg = "#F5F5F7"
-        card_bg = "#FFFFFF"
+        shell_top = "#F5F5F7"
+        shell_bot = "#EBEBF0"
+        card_top = "#FFFFFF"
+        card_bot = "#FAFAFC"
+        bevel_top = "rgba(255,255,255,0.95)"
+        bevel_bot = "rgba(0,0,0,0.09)"
+        card_bevel_top = "rgba(255,255,255,0.90)"
+        card_bevel_bot = "rgba(0,0,0,0.07)"
         track_bg = "#E5E5EA"
-        hairline = "rgba(0,0,0,0.08)"
+        lurker_seg = "#D1D1D6"
         text_primary = "#1D1D1F"
         text_secondary = "#515154"
         text_muted = "#6E6E73"
-        accent = "#0066CC"
+        accent = "#0071E3"
+        pill_bg = "rgba(0,0,0,0.05)"
 
-    botanical_palette = get_botanical_palette(health, theme)
     illustration = render_bonsai_illustration(level=level, health=health, theme=theme)
     stage_text = tr["stage_label"].format(level=level, stage=stage_name)
 
@@ -438,11 +464,19 @@ def render_svg_card(
     else:
         subtitle = tr["no_waterings"]
 
-    # Moisture circular gauge math (r=22 -> C = 2*pi*22 = 138.23)
-    ring_r = 22
+    # Apple Fitness ring math (r=24 -> C = 150.80)
+    ring_r = 24
     ring_c = 2 * math.pi * ring_r
     ring_offset = ring_c * (1.0 - (moisture / 100.0))
-    status_dot_x = round(784 - (len(health_label) * 7.0) - 10, 1)
+
+    # Status pill width scaled cleanly to text
+    pill_w = max(84, len(health_label) * 8 + 30)
+    pill_x = 784 - pill_w
+    pill_dot_x = pill_x + 13
+    pill_text_x = pill_x + 24
+
+    visitor_header = "Visitor activity" if lang == "en" else "Aktivitas pengunjung"
+    views_suffix = f"{views:,} total" if lang == "en" else f"{views:,} total"
 
     title_text = html.escape(f"Community Bonsai Lv.{level} {stage_name}")
     desc_text = html.escape(
@@ -450,12 +484,43 @@ def render_svg_card(
         f"Views {views}, Watered {total_waterings}, Just looking {lurkers}."
     )
 
+    watered_rect = (
+        f'<rect x="312" y="200" width="{watered_w}" height="10" rx="5" fill="{accent}" class="enter-bar"/>'
+        if watered_w > 0
+        else ""
+    )
+    lurker_rect = (
+        f'<rect x="{lurker_x}" y="200" width="{lurker_w}" height="10" rx="5" fill="{lurker_seg}"/>'
+        if lurker_w > 0
+        else ""
+    )
+
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="800" height="256" viewBox="0 0 800 256" fill="none" role="img" aria-labelledby="bonsai-title bonsai-desc">
   <title id="bonsai-title">{title_text}</title>
   <desc id="bonsai-desc">{desc_text}</desc>
   <defs>
+    <linearGradient id="shell-surf" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{shell_top}"/>
+      <stop offset="100%" stop-color="{shell_bot}"/>
+    </linearGradient>
+    <linearGradient id="shell-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{bevel_top}"/>
+      <stop offset="100%" stop-color="{bevel_bot}"/>
+    </linearGradient>
+    <linearGradient id="card-surf" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{card_top}"/>
+      <stop offset="100%" stop-color="{card_bot}"/>
+    </linearGradient>
+    <linearGradient id="card-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{card_bevel_top}"/>
+      <stop offset="100%" stop-color="{card_bevel_bot}"/>
+    </linearGradient>
+    <linearGradient id="app-icon-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34C759"/>
+      <stop offset="100%" stop-color="#248A3D"/>
+    </linearGradient>
     <clipPath id="scene-clip">
-      <rect x="16" y="16" width="264" height="224" rx="12"/>
+      <rect x="16" y="16" width="264" height="224" rx="16"/>
     </clipPath>
   </defs>
   <style>
@@ -479,80 +544,94 @@ def render_svg_card(
     }}
   </style>
 
-  <!-- Outer Apple Card Shell (radius 28, padding 16 -> nested radius 12) -->
-  <rect x="0.5" y="0.5" width="799" height="255" rx="28" fill="{shell_bg}" stroke="{hairline}"/>
+  <!-- Outer Apple Widget Shell (radius 32, padding 16 -> nested radius 16) -->
+  <rect x="0.5" y="0.5" width="799" height="255" rx="32" fill="url(#shell-surf)" stroke="url(#shell-bevel)"/>
 
-  <!-- Left Botanical Habitat Scene -->
+  <!-- Left Apple Weather-Style Botanical Sky Window -->
   <g clip-path="url(#scene-clip)">
-    <rect x="16" y="16" width="264" height="224" fill="{botanical_palette.scene_bg}"/>
-    <g transform="translate(16 24)">
+    <g transform="translate(16 16)">
       {illustration}
     </g>
-    <text x="32" y="36" font-size="12" font-weight="500" fill="{text_secondary}">{html.escape(stage_text)}</text>
+    <text x="32" y="40" font-size="12" font-weight="500" fill="rgba(255,255,255,0.88)">{html.escape(stage_text)}</text>
   </g>
-  <rect x="16.5" y="16.5" width="263" height="223" rx="12" stroke="{hairline}" fill="none"/>
+  <rect x="16.5" y="16.5" width="263" height="223" rx="16" stroke="url(#card-bevel)" fill="none"/>
 
-  <!-- Right Telemetry Column -->
-  <!-- Header -->
-  <text x="296" y="36" font-size="17" font-weight="600" fill="{text_primary}">{html.escape(tr['widget_title'])}</text>
-  <circle cx="{status_dot_x}" cy="31" r="3.5" fill="{status_color}"/>
-  <text x="784" y="35" text-anchor="end" font-size="13" font-weight="500" fill="{text_secondary}">{html.escape(health_label)}</text>
-  <text x="296" y="55" font-size="13" font-weight="400" fill="{text_secondary}">{html.escape(subtitle)}</text>
+  <!-- Right Apple Widget Modules -->
+  <!-- Widget Header with Apple App Icon Tile -->
+  <rect x="296" y="18" width="32" height="32" rx="8" fill="url(#app-icon-grad)"/>
+  <path d="M306 39c1-6.5 5-10.5 11.5-11.5-1 6.5-5 10.5-11.5 11.5Z" fill="#FFFFFF"/>
+  <path d="M306 39l5-5" stroke="#248A3D" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="338" y="32" font-size="15.5" font-weight="600" fill="{text_primary}">{html.escape(tr['widget_title'])}</text>
+  <text x="338" y="48" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(subtitle)}</text>
 
-  <!-- Middle Asymmetric Metric Row -->
-  <!-- Left Hero Card: Moisture Ring + Tabular Readout -->
-  <rect x="296" y="72" width="268" height="84" rx="12" fill="{card_bg}" stroke="{hairline}"/>
-  <circle cx="336" cy="114" r="{ring_r}" stroke="{track_bg}" stroke-width="5" fill="none"/>
-  <circle cx="336" cy="114" r="{ring_r}" stroke="{status_color}" stroke-width="5" stroke-linecap="round"
-    stroke-dasharray="{ring_c:.2f}" stroke-dashoffset="{ring_offset:.2f}" transform="rotate(-90 336 114)" fill="none"/>
-  <path d="M336 106.5s-4.5 4.9-4.5 7.6a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.6-4.5-7.6Z" stroke="{status_color}" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-  <text x="376" y="114" font-size="28" font-weight="500" fill="{text_primary}" letter-spacing="-0.02em" class="num">{moisture}%</text>
-  <text x="376" y="133" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(tr['moisture_label'])} · {html.escape(health_label)}</text>
+  <!-- Status Capsule -->
+  <rect x="{pill_x}" y="21" width="{pill_w}" height="26" rx="13" fill="{pill_bg}" stroke="{card_bevel_bot}"/>
+  <circle cx="{pill_dot_x}" cy="34" r="3.5" fill="{status_color}"/>
+  <text x="{pill_text_x}" y="38" font-size="12" font-weight="500" fill="{text_primary}">{html.escape(health_label)}</text>
 
-  <!-- Right Compact Card: Growth XP -->
-  <rect x="576" y="72" width="208" height="84" rx="12" fill="{card_bg}" stroke="{hairline}"/>
-  <text x="592" y="96" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(tr['growth_label'])}</text>
-  <text x="768" y="96" text-anchor="end" font-size="12" font-weight="400" fill="{text_muted}" class="num">{html.escape(xp_label)}</text>
-  <text x="592" y="121" font-size="15" font-weight="500" fill="{text_primary}">Lv. {level} · {html.escape(stage_name)}</text>
-  <rect x="592" y="135" width="176" height="6" rx="3" fill="{track_bg}"/>
-  <rect x="592" y="135" width="{xp_bar_w}" height="6" rx="3" fill="{accent}" class="enter-bar"/>
+  <!-- Middle Asymmetric Row -->
+  <!-- Left Card: Apple Fitness Tinted Moisture Ring -->
+  <rect x="296" y="64" width="260" height="92" rx="16" fill="url(#card-surf)" stroke="url(#card-bevel)"/>
+  <circle cx="342" cy="110" r="{ring_r}" stroke="{status_color}" stroke-opacity="0.20" stroke-width="6" fill="none"/>
+  <circle cx="342" cy="110" r="{ring_r}" stroke="{status_color}" stroke-width="6" stroke-linecap="round"
+    stroke-dasharray="{ring_c:.2f}" stroke-dashoffset="{ring_offset:.2f}" transform="rotate(-90 342 110)" fill="none"/>
+  <path d="M342 102s-4.5 4.9-4.5 7.6a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.6-4.5-7.6Z" stroke="{status_color}" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <text x="382" y="111" font-size="30" font-weight="600" fill="{text_primary}" letter-spacing="-0.02em" class="num">{moisture}%</text>
+  <text x="382" y="130" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(tr['moisture_label'])} · {html.escape(health_label)}</text>
 
-  <!-- Bottom Grouped Card: Visitor Views vs Care Share -->
-  <rect x="296" y="168" width="488" height="72" rx="12" fill="{card_bg}" stroke="{hairline}"/>
-  <text x="312" y="194" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(tr['views_label'])} <tspan font-size="14" font-weight="500" fill="{text_primary}" class="num" dx="4">{views:,}</tspan></text>
-  <text x="536" y="194" text-anchor="middle" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(tr['watered_label'])} <tspan font-size="14" font-weight="500" fill="{accent}" class="num" dx="4">{total_waterings:,}</tspan> <tspan font-size="12" fill="{text_muted}" class="num">({care_pct:.1f}%)</tspan></text>
-  <text x="768" y="194" text-anchor="end" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(tr['lurkers_label'])} <tspan font-size="14" font-weight="500" fill="{text_primary}" class="num" dx="4">{lurkers:,}</tspan></text>
+  <!-- Right Card: Growth Progress -->
+  <rect x="568" y="64" width="216" height="92" rx="16" fill="url(#card-surf)" stroke="url(#card-bevel)"/>
+  <text x="584" y="88" font-size="12" font-weight="400" fill="{text_secondary}">{html.escape(tr['growth_label'])}</text>
+  <text x="768" y="88" text-anchor="end" font-size="12" font-weight="400" fill="{text_muted}" class="num">{html.escape(xp_label)}</text>
+  <text x="584" y="114" font-size="16" font-weight="600" fill="{text_primary}">Lv. {level} · {html.escape(stage_name)}</text>
+  <rect x="584" y="130" width="184" height="8" rx="4" fill="{track_bg}"/>
+  <rect x="584" y="130" width="{xp_bar_w}" height="8" rx="4" fill="{accent}" class="enter-bar"/>
 
-  <rect x="312" y="212" width="456" height="6" rx="3" fill="{track_bg}"/>
-  <rect x="312" y="212" width="{share_bar_w}" height="6" rx="3" fill="{accent}" class="enter-bar"/>
+  <!-- Bottom Card: Apple Storage-Style Visitor Care Bar -->
+  <rect x="296" y="168" width="488" height="72" rx="16" fill="url(#card-surf)" stroke="url(#card-bevel)"/>
+  <text x="312" y="190" font-size="12.5" font-weight="500" fill="{text_primary}">{html.escape(visitor_header)}</text>
+  <text x="768" y="190" text-anchor="end" font-size="12" font-weight="400" fill="{text_secondary}" class="num">{html.escape(views_suffix)}</text>
+
+  {watered_rect}
+  {lurker_rect}
+
+  <circle cx="316" cy="224" r="3.5" fill="{accent}"/>
+  <text x="326" y="228" font-size="11.5" font-weight="400" fill="{text_secondary}">{html.escape(tr['watered_label'])} <tspan font-weight="500" fill="{text_primary}" class="num">{total_waterings:,} ({care_pct:.1f}%)</tspan></text>
+  <circle cx="484" cy="224" r="3.5" fill="{lurker_seg}"/>
+  <text x="494" y="228" font-size="11.5" font-weight="400" fill="{text_secondary}">{html.escape(tr['lurkers_label'])} <tspan font-weight="500" fill="{text_primary}" class="num">{lurkers:,} ({lurker_pct:.1f}%)</tspan></text>
 </svg>
 """
 
 
 def render_cta_button(theme: str = "dark", lang: str = "en") -> str:
-    """Generate a restrained Apple-style pill CTA button SVG."""
+    """Generate an Apple.com-inspired primary pill CTA button SVG."""
     is_dark = theme == "dark"
     tr = TRANSLATIONS.get(lang, TRANSLATIONS["en"])
     label = html.escape(tr["cta_label"])
 
-    if is_dark:
-        bg = "#F5F5F7"
-        fg = "#1D1D1F"
-        stroke = "rgba(255,255,255,0.12)"
-    else:
-        bg = "#1D1D1F"
-        fg = "#FFFFFF"
-        stroke = "rgba(0,0,0,0.08)"
+    bg_top = "#1890FF" if is_dark else "#0077ED"
+    bg_bot = "#0A84FF" if is_dark else "#0066CC"
+    bevel = "rgba(255,255,255,0.28)"
 
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="176" height="38" viewBox="0 0 176 38" fill="none" role="img" aria-label="{label}">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="180" height="38" viewBox="0 0 180 38" fill="none" role="img" aria-label="{label}">
+  <defs>
+    <linearGradient id="cta-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{bg_top}"/>
+      <stop offset="100%" stop-color="{bg_bot}"/>
+    </linearGradient>
+    <linearGradient id="cta-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{bevel}"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.04)"/>
+    </linearGradient>
+  </defs>
   <style>
     text {{
       font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif;
     }}
   </style>
-  <rect x="0.5" y="0.5" width="175" height="37" rx="18.5" fill="{bg}" stroke="{stroke}"/>
-  <path d="M27 12.8s-4.2 4.6-4.2 7.1a4.2 4.2 0 0 0 8.4 0c0-2.5-4.2-7.1-4.2-7.1Z" stroke="{fg}" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-  <text x="41" y="23.5" font-size="13" font-weight="500" fill="{fg}">{label}</text>
+  <rect x="0.5" y="0.5" width="179" height="37" rx="18.5" fill="url(#cta-grad)" stroke="url(#cta-rim)"/>
+  <path d="M29 12.8s-4.2 4.6-4.2 7.1a4.2 4.2 0 0 0 8.4 0c0-2.5-4.2-7.1-4.2-7.1Z" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <text x="43" y="23.5" font-size="13" font-weight="500" fill="#FFFFFF">{label}</text>
 </svg>
 """
 

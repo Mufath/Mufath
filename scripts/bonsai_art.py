@@ -10,7 +10,10 @@ from typing import Dict
 class BotanicalPalette:
     """Color tokens for the bonsai scene matched to health state and theme."""
 
-    scene_bg: str
+    sky_top: str
+    sky_mid: str
+    sky_bot: str
+    sky_accent: str
     sill: str
     sill_edge: str
     pot_body: str
@@ -30,26 +33,29 @@ class BotanicalPalette:
 
 
 def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
-    """Return natural botanical tones for the given health state and light/dark theme."""
+    """Return Apple Weather-inspired sky and botanical tones for health & theme."""
     is_dark = theme == "dark"
 
-    sill = "#2A2521" if is_dark else "#DFD6CA"
-    sill_edge = "#1E1A17" if is_dark else "#CFC3B4"
-    pot_body = "#3A3F45" if is_dark else "#D6D3CD"
-    pot_rim = "#4A5058" if is_dark else "#E7E5E0"
-    pot_shadow = "#262A2F" if is_dark else "#B8B3AA"
+    sill = "#2A2420" if is_dark else "#D8CEC0"
+    sill_edge = "#1E1916" if is_dark else "#C5B9A8"
+    pot_body = "#3A3F45" if is_dark else "#ECEAE4"
+    pot_rim = "#4C525A" if is_dark else "#F8F7F4"
+    pot_shadow = "#23272C" if is_dark else "#C9C5BC"
     stone = "#525860" if is_dark else "#9CA3AF"
 
     if health == "layu":
         return BotanicalPalette(
-            scene_bg="#231D19" if is_dark else "#F3EDE4",
+            sky_top="#23252A" if is_dark else "#6D7885",
+            sky_mid="#2D3036" if is_dark else "#8B97A4",
+            sky_bot="#3A3D44" if is_dark else "#B6C0CA",
+            sky_accent="#9CA3AF" if is_dark else "#E5E7EB",
             sill=sill,
             sill_edge=sill_edge,
             pot_body=pot_body,
             pot_rim=pot_rim,
             pot_shadow=pot_shadow,
-            soil="#5C4735" if is_dark else "#8C6F56",
-            moss="#6B5E42" if is_dark else "#9C8B64",
+            soil="#5C4735" if is_dark else "#7D624B",
+            moss="#6B5E42" if is_dark else "#8C7D5A",
             trunk_dark="#4A382B",
             trunk_mid="#69503E",
             trunk_hi="#856853",
@@ -62,14 +68,17 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
         )
     if health == "haus":
         return BotanicalPalette(
-            scene_bg="#20211B" if is_dark else "#F1F0E6",
+            sky_top="#2B2118" if is_dark else "#C27D44",
+            sky_mid="#3E2E20" if is_dark else "#DBA16B",
+            sky_bot="#523D2B" if is_dark else "#F0CAA1",
+            sky_accent="#FBBF24" if is_dark else "#FFF3D6",
             sill=sill,
             sill_edge=sill_edge,
             pot_body=pot_body,
             pot_rim=pot_rim,
             pot_shadow=pot_shadow,
-            soil="#4D3B2C" if is_dark else "#7A5E47",
-            moss="#627834" if is_dark else "#849E48",
+            soil="#4D3B2C" if is_dark else "#735842",
+            moss="#627834" if is_dark else "#7D9644",
             trunk_dark="#4D3728",
             trunk_mid="#70513B",
             trunk_hi="#8F6A4E",
@@ -82,7 +91,10 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
         )
     if health == "subur":
         return BotanicalPalette(
-            scene_bg="#18221D" if is_dark else "#E7F0EA",
+            sky_top="#132238" if is_dark else "#3D82C4",
+            sky_mid="#1D3554" if is_dark else "#6AA8DE",
+            sky_bot="#2B4B72" if is_dark else "#AED4F2",
+            sky_accent="#93C5FD" if is_dark else "#FFF8DC",
             sill=sill,
             sill_edge=sill_edge,
             pot_body=pot_body,
@@ -102,7 +114,10 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
         )
     # Default: "segar" (Healthy)
     return BotanicalPalette(
-        scene_bg="#1A201E" if is_dark else "#EAF0EC",
+        sky_top="#16253A" if is_dark else "#4A8AC6",
+        sky_mid="#223854" if is_dark else "#76B0E0",
+        sky_bot="#304E70" if is_dark else "#B7D9F4",
+        sky_accent="#BAE6FD" if is_dark else "#FFFDF0",
         sill=sill,
         sill_edge=sill_edge,
         pot_body=pot_body,
@@ -170,21 +185,37 @@ def _blossom(cx: float, cy: float, r: float, p: BotanicalPalette) -> str:
 
 
 def render_bonsai_illustration(level: int, health: str, theme: str) -> str:
-    """Return a clean botanical SVG group (for a 264x216 scene container)."""
+    """Return an Apple Weather-inspired sky and botanical vector SVG group."""
     lvl = max(1, min(5, level))
     p = get_botanical_palette(health, theme)
     is_dark = theme == "dark"
-    light_color = "#FFFFFF" if is_dark else "#FFFDF7"
-    top_op = "0.06" if is_dark else "0.55"
-    window_light = f"""
+
+    if is_dark:
+        sky_detail = f"""
+    <circle cx="218" cy="46" r="14" fill="{p.sky_accent}" opacity="0.16"/>
+    <circle cx="218" cy="46" r="6.5" fill="{p.sky_accent}" opacity="0.85"/>
+    <circle cx="221" cy="44" r="5.8" fill="{p.sky_top}"/>
+    <circle cx="56" cy="52" r="1.1" fill="#FFFFFF" opacity="0.65"/>
+    <circle cx="174" cy="34" r="1.3" fill="#FFFFFF" opacity="0.55"/>
+    <circle cx="92" cy="68" r="0.9" fill="#FFFFFF" opacity="0.45"/>"""
+    else:
+        sky_detail = f"""
+    <circle cx="214" cy="44" r="24" fill="{p.sky_accent}" opacity="0.28"/>
+    <circle cx="214" cy="44" r="12" fill="{p.sky_accent}" opacity="0.72"/>
+    <ellipse cx="72" cy="66" rx="34" ry="11" fill="#FFFFFF" opacity="0.24"/>
+    <ellipse cx="92" cy="62" rx="22" ry="9" fill="#FFFFFF" opacity="0.26"/>
+    <ellipse cx="196" cy="86" rx="28" ry="8" fill="#FFFFFF" opacity="0.18"/>"""
+
+    sky_bg = f"""
     <defs>
-      <linearGradient id="sun-wash" x1="20%" y1="0%" x2="80%" y2="100%">
-        <stop offset="0%" stop-color="{light_color}" stop-opacity="{top_op}"/>
-        <stop offset="70%" stop-color="{light_color}" stop-opacity="0"/>
+      <linearGradient id="apple-sky" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="{p.sky_top}"/>
+        <stop offset="52%" stop-color="{p.sky_mid}"/>
+        <stop offset="100%" stop-color="{p.sky_bot}"/>
       </linearGradient>
     </defs>
-    <rect x="0" y="0" width="264" height="184" fill="url(#sun-wash)"/>"""
-    base = f"{window_light}{_render_pot_and_sill(p, wide=(lvl >= 4))}"
+    <rect x="0" y="0" width="264" height="190" fill="url(#apple-sky)"/>{sky_detail}"""
+    base = f"{sky_bg}{_render_pot_and_sill(p, wide=(lvl >= 4))}"
 
     if lvl == 1:
         tree = f"""
