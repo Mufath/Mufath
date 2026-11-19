@@ -408,50 +408,50 @@ def render_svg_card(
 
     # Apple StandBy / VisionOS-inspired frosted atmospheric tokens.
     if is_dark:
-        mesh_start = "#2D233E"
-        mesh_mid = "#1D2B44"
-        mesh_end = "#101827"
-        bloom_a = "#9D6B84"
+        mesh_start = "#3B2846"
+        mesh_mid = "#20304C"
+        mesh_end = "#0F172A"
+        bloom_a = "#E19AA8"
         bloom_b = "#38BDF8"
-        rim_top = "rgba(255,255,255,0.42)"
-        rim_bot = "rgba(255,255,255,0.10)"
-        outer_halo = "rgba(255,255,255,0.08)"
-        card1_top = "#242D40"
-        card1_bot = "#1B2233"
-        card1_opacity = "0.90"
-        card1_border = "rgba(255,255,255,0.22)"
-        card1_text = "#F5F5F7"
-        card1_muted = "#A1A1AA"
-        card2_top = "#27324A"
-        card2_bot = "#1B2438"
-        card2_opacity = "0.66"
-        card2_border = "rgba(255,255,255,0.26)"
-        card2_text = "#F5F5F7"
-        card2_muted = "#CBD5E1"
+        rim_top = "rgba(255,255,255,0.48)"
+        rim_bot = "rgba(255,255,255,0.12)"
+        outer_halo = "rgba(255,255,255,0.10)"
+        card1_top = "#FFFFFF"
+        card1_bot = "#E2E8F0"
+        card1_opacity = "0.18"
+        card1_border = "rgba(255,255,255,0.34)"
+        card1_text = "#FFFFFF"
+        card1_muted = "rgba(255,255,255,0.72)"
+        card2_top = "#FFFFFF"
+        card2_bot = "#94A3B8"
+        card2_opacity = "0.08"
+        card2_border = "rgba(255,255,255,0.20)"
+        card2_text = "#F8FAFC"
+        card2_muted = "rgba(255,255,255,0.66)"
         divider_color = "rgba(255,255,255,0.14)"
-        track_bg = "rgba(255,255,255,0.14)"
+        track_bg = "rgba(255,255,255,0.18)"
         xp_fill = "#38BDF8"
-        icon_box_stroke = "#F5F5F7"
+        icon_box_stroke = "rgba(255,255,255,0.88)"
         hero_text = "#FFFFFF"
-        hero_muted = "rgba(255,255,255,0.72)"
+        hero_muted = "rgba(255,255,255,0.74)"
     else:
         mesh_start = "#D8A7B1"
         mesh_mid = "#6F88A6"
         mesh_end = "#334E70"
         bloom_a = "#F7CAD4"
         bloom_b = "#7DD3FC"
-        rim_top = "rgba(255,255,255,0.92)"
-        rim_bot = "rgba(255,255,255,0.34)"
+        rim_top = "rgba(255,255,255,0.94)"
+        rim_bot = "rgba(255,255,255,0.38)"
         outer_halo = "rgba(15,23,42,0.10)"
         card1_top = "#FFFFFF"
         card1_bot = "#F8FAFC"
-        card1_opacity = "0.94"
-        card1_border = "rgba(255,255,255,0.95)"
+        card1_opacity = "0.95"
+        card1_border = "rgba(255,255,255,0.98)"
         card1_text = "#1D1D1F"
         card1_muted = "#6E6E73"
         card2_top = "#FFFFFF"
         card2_bot = "#DCE6F2"
-        card2_opacity = "0.74"
+        card2_opacity = "0.68"
         card2_border = "rgba(255,255,255,0.78)"
         card2_text = "#1D1D1F"
         card2_muted = "#475569"
@@ -466,9 +466,9 @@ def render_svg_card(
         level=level,
         health=health,
         theme=theme,
-        origin_x=93,
-        origin_y=52,
-        pixel_size=5,
+        origin_x=76,
+        origin_y=30,
+        pixel_size=6,
     )
 
     title_text = html.escape(f"Community Bonsai Lv.{level} {stage_name}")
@@ -558,6 +558,7 @@ def render_svg_card(
   <text x="52" y="40" font-size="11.5" font-weight="700" fill="{hero_muted}" letter-spacing="0.08em">{html.escape(tr['stage_prefix'])} {level}/5 • {html.escape(stage_name.upper())}</text>
 
   <!-- Bonsai Pixel Art -->
+  <ellipse cx="160" cy="174" rx="46" ry="5" fill="rgba(0,0,0,0.22)"/>
   <g shape-rendering="crispEdges">
     {pixels_svg}
   </g>
@@ -630,7 +631,7 @@ def write_cards(
     cards_dir.mkdir(parents=True, exist_ok=True)
     for theme in ("dark", "light"):
         svg = render_svg_card(state, theme=theme, lang=lang, now=now)
-        (cards_dir / f"bonsai-{theme}.svg").write_text(svg, encoding="utf-8")
+        (cards_dir / f"bonsai-widget-{theme}.svg").write_text(svg, encoding="utf-8")
 
 
 def build_issue_comment(
