@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="260" viewBox="0 0 800 260" fill="none" role="img" aria-labelledby="bonsai-title bonsai-desc">
   <title id="bonsai-title">Community Bonsai Lv.1 Bibit</title>
-  <desc id="bonsai-desc">Kelembaban 75%, Status Segar, Views 63, Siram 0, Cuma Liat 63.</desc>
+  <desc id="bonsai-desc">Kelembaban 100%, Status Subur, Views 66, Siram 1, Cuma Liat 65.</desc>
   <defs>
     <radialGradient id="habitat-glow" cx="50%" cy="52%" r="55%">
-      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#22C55E" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#22C55E" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <style>
@@ -44,28 +44,28 @@
   <!-- Left Habitat Panel -->
   <rect x="18" y="18" width="252" height="224" rx="10" fill="#111824" stroke="#262C36"/>
   <rect x="18" y="18" width="252" height="224" rx="10" fill="url(#habitat-glow)"/>
-  <circle cx="52" cy="56" r="2.2" fill="#38BDF8" class="float-a"/><circle cx="236" cy="72" r="1.8" fill="#38BDF8" class="float-b"/><circle cx="220" cy="48" r="1.5" fill="#38BDF8" class="float-c"/>
+  <circle cx="52" cy="56" r="2.2" fill="#38BDF8" class="float-a"/><circle cx="236" cy="72" r="1.8" fill="#22C55E" class="float-b"/><circle cx="220" cy="48" r="1.5" fill="#38BDF8" class="float-c"/>
   <g shape-rendering="crispEdges">
-    <rect x="137" y="117" width="14" height="7" fill="#6EE7B7"/>
-    <rect x="123" y="124" width="14" height="7" fill="#6EE7B7"/>
-    <rect x="137" y="124" width="14" height="7" fill="#10B981"/>
-    <rect x="151" y="124" width="7" height="7" fill="#6EE7B7"/>
-    <rect x="116" y="131" width="7" height="7" fill="#6EE7B7"/>
-    <rect x="123" y="131" width="14" height="7" fill="#10B981"/>
-    <rect x="137" y="131" width="7" height="7" fill="#047857"/>
-    <rect x="151" y="131" width="7" height="7" fill="#10B981"/>
-    <rect x="158" y="131" width="7" height="7" fill="#6EE7B7"/>
-    <rect x="130" y="138" width="7" height="7" fill="#047857"/>
-    <rect x="144" y="138" width="7" height="7" fill="#A4704B"/>
-    <rect x="158" y="138" width="14" height="7" fill="#10B981"/>
-    <rect x="137" y="145" width="7" height="7" fill="#A4704B"/>
-    <rect x="144" y="145" width="7" height="7" fill="#7F5335"/>
-    <rect x="137" y="152" width="7" height="7" fill="#7F5335"/>
-    <rect x="144" y="152" width="7" height="7" fill="#563520"/>
-    <rect x="130" y="159" width="7" height="7" fill="#A4704B"/>
-    <rect x="137" y="159" width="7" height="7" fill="#7F5335"/>
-    <rect x="144" y="159" width="7" height="7" fill="#563520"/>
-    <rect x="109" y="166" width="70" height="7" fill="#573B28"/>
+    <rect x="137" y="117" width="14" height="7" fill="#4ADE80"/>
+    <rect x="123" y="124" width="14" height="7" fill="#4ADE80"/>
+    <rect x="137" y="124" width="14" height="7" fill="#22C55E"/>
+    <rect x="151" y="124" width="7" height="7" fill="#4ADE80"/>
+    <rect x="116" y="131" width="7" height="7" fill="#4ADE80"/>
+    <rect x="123" y="131" width="14" height="7" fill="#22C55E"/>
+    <rect x="137" y="131" width="7" height="7" fill="#15803D"/>
+    <rect x="151" y="131" width="7" height="7" fill="#22C55E"/>
+    <rect x="158" y="131" width="7" height="7" fill="#4ADE80"/>
+    <rect x="130" y="138" width="7" height="7" fill="#15803D"/>
+    <rect x="144" y="138" width="7" height="7" fill="#A9744F"/>
+    <rect x="158" y="138" width="14" height="7" fill="#22C55E"/>
+    <rect x="137" y="145" width="7" height="7" fill="#A9744F"/>
+    <rect x="144" y="145" width="7" height="7" fill="#855637"/>
+    <rect x="137" y="152" width="7" height="7" fill="#855637"/>
+    <rect x="144" y="152" width="7" height="7" fill="#593722"/>
+    <rect x="130" y="159" width="7" height="7" fill="#A9744F"/>
+    <rect x="137" y="159" width="7" height="7" fill="#855637"/>
+    <rect x="144" y="159" width="7" height="7" fill="#593722"/>
+    <rect x="109" y="166" width="70" height="7" fill="#4A3222"/>
     <rect x="102" y="173" width="84" height="7" fill="#38BDF8"/>
     <rect x="102" y="180" width="77" height="7" fill="#1E3A5F"/>
     <rect x="179" y="180" width="7" height="7" fill="#10233B"/>
@@ -79,53 +79,53 @@
   <text x="144" y="229" text-anchor="middle" font-size="11.5" font-weight="600" fill="#8B949E">Stage 1/5 • Bibit</text>
 
   <!-- Right Panel Header -->
-  <g transform="translate(292 27)" fill="#38BDF8">
-    <path d="M7 13V7.5C7 4.8 4.8 3 2 3c0 2.8 1.8 4.8 4.5 5M7 9.5C7 6.5 9.2 4.5 12 4.5c0 2.8-1.8 4.8-4.5 5" stroke="#38BDF8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <g transform="translate(292 27)" fill="#22C55E">
+    <path d="M7 13V7.5C7 4.8 4.8 3 2 3c0 2.8 1.8 4.8 4.5 5M7 9.5C7 6.5 9.2 4.5 12 4.5c0 2.8-1.8 4.8-4.5 5" stroke="#22C55E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   </g>
   <text x="311" y="40" font-size="15" font-weight="700" fill="#F0F6FC" letter-spacing="0.02em">COMMUNITY BONSAI</text>
-  <text x="292" y="57" font-size="11.5" fill="#8B949E">Kelembaban terjaga baik</text>
+  <text x="292" y="57" font-size="11.5" fill="#8B949E">Daun rimbun &amp; bercahaya</text>
 
   <!-- Health Pill -->
-  <rect x="688" y="24" width="94" height="24" rx="12" fill="#161B22" stroke="#38BDF8" stroke-opacity="0.65"/>
-  <circle cx="703" cy="36" r="4" fill="#38BDF8" class="pulse-dot"/>
-  <text x="714" y="40" font-size="11.5" font-weight="600" fill="#F0F6FC">Segar</text>
+  <rect x="688" y="24" width="94" height="24" rx="12" fill="#161B22" stroke="#22C55E" stroke-opacity="0.65"/>
+  <circle cx="703" cy="36" r="4" fill="#22C55E" class="pulse-dot"/>
+  <text x="714" y="40" font-size="11.5" font-weight="600" fill="#F0F6FC">Subur</text>
 
   <!-- Moisture Bar -->
-  <path d="M298 70.5c0 0-4.5 4.9-4.5 7.6a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.6-4.5-7.6Z" fill="#38BDF8"/>
+  <path d="M298 70.5c0 0-4.5 4.9-4.5 7.6a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.6-4.5-7.6Z" fill="#22C55E"/>
   <text x="309" y="81" font-size="12" font-weight="600" fill="#F0F6FC">Kelembaban Air</text>
-  <text x="778" y="81" text-anchor="end" font-size="12" font-weight="700" fill="#38BDF8" class="mono">75%</text>
+  <text x="778" y="81" text-anchor="end" font-size="12" font-weight="700" fill="#22C55E" class="mono">100%</text>
   <rect x="292" y="89" width="486" height="9" rx="4.5" fill="#21262D"/>
-  <rect x="292" y="89" width="364.5" height="9" rx="4.5" fill="#38BDF8" class="bar-anim"/>
+  <rect x="292" y="89" width="486.0" height="9" rx="4.5" fill="#22C55E" class="bar-anim"/>
 
   <!-- Growth XP Bar -->
   <path d="M293 121.5c.8-4.8 4.2-8.2 9.5-8.8-.6 5.3-4 8.7-8.8 9.5l-.7-.7Z" fill="#A855F7"/>
   <text x="309" y="121" font-size="12" font-weight="600" fill="#F0F6FC">Pertumbuhan (Lv.1 Bibit)</text>
-  <text x="778" y="121" text-anchor="end" font-size="12" font-weight="700" fill="#38BDF8" class="mono">0 / 30 XP</text>
+  <text x="778" y="121" text-anchor="end" font-size="12" font-weight="700" fill="#38BDF8" class="mono">10 / 30 XP</text>
   <rect x="292" y="129" width="486" height="9" rx="4.5" fill="#21262D"/>
-  <rect x="292" y="129" width="0.0" height="9" rx="4.5" fill="#A855F7" class="bar-anim"/>
+  <rect x="292" y="129" width="162.0" height="9" rx="4.5" fill="#A855F7" class="bar-anim"/>
 
   <!-- Stats Grid (Profile Views Replacement) -->
   <rect x="292" y="154" width="154" height="58" rx="8" fill="#161B22" stroke="#262C36"/>
   <path d="M304 168.5s2.4-4 6-4 6 4 6 4-2.4 4-6 4-6-4-6-4Z" stroke="#8B949E" stroke-width="1.3" fill="none"/>
   <circle cx="310" cy="168.5" r="1.5" fill="#8B949E"/>
   <text x="321" y="172" font-size="10.5" font-weight="600" fill="#8B949E" letter-spacing="0.04em">PROFILE VIEWS</text>
-  <text x="304" y="196" font-size="19" font-weight="700" fill="#F0F6FC" class="mono">63</text>
+  <text x="304" y="196" font-size="19" font-weight="700" fill="#F0F6FC" class="mono">66</text>
   <text x="436" y="195" text-anchor="end" font-size="10" fill="#8B949E">total</text>
 
   <rect x="458" y="154" width="154" height="58" rx="8" fill="#161B22" stroke="#262C36"/>
   <path d="M474.5 163.5s-3.5 3.8-3.5 5.8a3.5 3.5 0 0 0 7 0c0-2-3.5-5.8-3.5-5.8Z" fill="#38BDF8"/>
   <text x="484" y="172" font-size="10.5" font-weight="600" fill="#8B949E" letter-spacing="0.04em">SUDAH SIRAM</text>
-  <text x="470" y="196" font-size="19" font-weight="700" fill="#38BDF8" class="mono">0</text>
-  <text x="602" y="195" text-anchor="end" font-size="10" fill="#8B949E">0.0%</text>
+  <text x="470" y="196" font-size="19" font-weight="700" fill="#38BDF8" class="mono">1</text>
+  <text x="602" y="195" text-anchor="end" font-size="10" fill="#8B949E">1.5%</text>
 
   <rect x="624" y="154" width="154" height="58" rx="8" fill="#161B22" stroke="#262C36"/>
   <circle cx="641" cy="166.5" r="2.2" stroke="#8B949E" stroke-width="1.3" fill="none"/>
   <path d="M636.5 172.5c.6-1.8 2.3-2.7 4.5-2.7s3.9.9 4.5 2.7" stroke="#8B949E" stroke-width="1.3" stroke-linecap="round" fill="none"/>
   <text x="651" y="172" font-size="10.5" font-weight="600" fill="#8B949E" letter-spacing="0.04em">CUMA LIAT</text>
-  <text x="636" y="196" font-size="19" font-weight="700" fill="#F0F6FC" class="mono">63</text>
+  <text x="636" y="196" font-size="19" font-weight="700" fill="#F0F6FC" class="mono">65</text>
   <text x="768" y="195" text-anchor="end" font-size="10" fill="#8B949E">pasif</text>
 
   <!-- Footer -->
-  <text x="292" y="236" font-size="11.5" fill="#8B949E">Belum ada penyiram — jadilah yang pertama!</text>
+  <text x="292" y="236" font-size="11.5" fill="#8B949E">Penyiram terakhir: @Mufath (baru saja)</text>
   <text x="778" y="236" text-anchor="end" font-size="11" fill="#38BDF8">Klik "Siram Bonsai" ↓</text>
 </svg>
