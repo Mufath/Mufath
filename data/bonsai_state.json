@@ -1,0 +1,14 @@
+{
+  "level": 1,
+  "xp": 0,
+  "moisture": 75,
+  "health": "segar",
+  "total_waterings": 0,
+  "last_known_views": 63,
+  "last_watered_at": null,
+  "last_watered_by": null,
+  "last_decay_date": null,
+  "recent_waterers": [],
+  "user_cooldowns": {},
+  "created_at": "2026-11-19T16:51:27Z"
+}

@@ -11,15 +11,32 @@
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=Mufath&label=Profile%20Views&color=38BDF8&style=flat-square" alt="Profile Views" />
-</p>
-
-<p align="center">
+  <a href="#-community-bonsai">Bonsai</a> •
   <a href="#-about-me">About Me</a> •
   <a href="#-tech-stack--tools">Tech Stack</a> •
   <a href="#-featured-projects">Projects</a> •
   <a href="#-github-analytics">Analytics</a> •
   <a href="#-connect-with-me">Connect</a>
+</p>
+
+---
+
+### 🌱 Community Bonsai
+
+<p align="center">
+  <a href="https://github.com/Mufath/Mufath/issues/new?template=water-bonsai.md&title=%5BSiram+Bonsai%5D+%F0%9F%92%A7">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./cards/bonsai-dark.svg">
+      <img src="./cards/bonsai-light.svg" width="800" alt="Community Bonsai">
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Mufath/Mufath/issues/new?template=water-bonsai.md&title=%5BSiram+Bonsai%5D+%F0%9F%92%A7">
+    <img src="https://img.shields.io/badge/%F0%9F%92%A7_Siram_Bonsai_Sekarang-38BDF8?style=for-the-badge" alt="Siram Bonsai Sekarang" />
+  </a>
+  <img src="https://komarev.com/ghpvc/?username=Mufath&style=pixel" alt="" />
 </p>
 
 ---
