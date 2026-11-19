@@ -1,43 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="260" viewBox="0 0 800 260" fill="none" role="img" aria-labelledby="bonsai-title bonsai-desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="256" viewBox="0 0 800 256" fill="none" role="img" aria-labelledby="bonsai-title bonsai-desc">
   <title id="bonsai-title">Community Bonsai Lv.1 Sprout</title>
-  <desc id="bonsai-desc">Moisture 100%, Status THRIVING, Views 66, Watered 1, Just Looking 65.</desc>
+  <desc id="bonsai-desc">Moisture 100%, Status Thriving, Views 66, Watered 1, Just looking 65.</desc>
   <defs>
-    <linearGradient id="apple-mesh" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#D8A7B1"/>
-      <stop offset="48%" stop-color="#6F88A6"/>
-      <stop offset="100%" stop-color="#334E70"/>
+    <linearGradient id="shell-surf" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F5F5F7"/>
+      <stop offset="100%" stop-color="#EBEBF0"/>
     </linearGradient>
-    <radialGradient id="bloom-rose" cx="16%" cy="20%" r="48%">
-      <stop offset="0%" stop-color="#F7CAD4" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#F7CAD4" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="bloom-sky" cx="78%" cy="82%" r="55%">
-      <stop offset="0%" stop-color="#7DD3FC" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#7DD3FC" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="glass-rim" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.94)"/>
-      <stop offset="55%" stop-color="rgba(255,255,255,0.38)"/>
-      <stop offset="100%" stop-color="rgba(255,255,255,0.94)"/>
+    <linearGradient id="shell-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.09)"/>
     </linearGradient>
-    <linearGradient id="card1-fill" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#F8FAFC" stop-opacity="0.95"/>
+    <linearGradient id="card-surf" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FAFAFC"/>
     </linearGradient>
-    <linearGradient id="card2-fill" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.68"/>
-      <stop offset="100%" stop-color="#DCE6F2" stop-opacity="0.68"/>
+    <linearGradient id="card-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.90)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.07)"/>
     </linearGradient>
-    <clipPath id="shell-clip">
-      <rect x="6" y="6" width="788" height="248" rx="34"/>
+    <linearGradient id="app-icon-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34C759"/>
+      <stop offset="100%" stop-color="#248A3D"/>
+    </linearGradient>
+    <clipPath id="scene-clip">
+      <rect x="16" y="16" width="264" height="224" rx="16"/>
     </clipPath>
-    <filter id="soft-grain" x="0%" y="0%" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise"/>
-      <feColorMatrix type="saturate" values="0" in="noise" result="monoNoise"/>
-      <feComponentTransfer in="monoNoise" result="alphaNoise">
-        <feFuncA type="table" tableValues="0 0.045"/>
-      </feComponentTransfer>
-    </filter>
   </defs>
   <style>
     text {
@@ -46,105 +33,106 @@
     .num {
       font-variant-numeric: tabular-nums;
     }
-    .bar-anim {
+    .enter-bar {
       transform-box: fill-box;
       transform-origin: left center;
-      animation: growX 0.85s cubic-bezier(.22,1,.36,1) both;
+      animation: growX 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    .pulse-dot { animation: pulseDot 2.4s ease-in-out infinite; }
-    @keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-    @keyframes pulseDot {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; }
+    @keyframes growX {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
     }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; }
     }
   </style>
 
-  <!-- Outer subtle Apple bezel halo -->
-  <rect x="2" y="2" width="796" height="256" rx="37" stroke="rgba(15,23,42,0.10)" stroke-width="2"/>
+  <!-- Outer Apple Widget Shell (radius 32, padding 16 -> nested radius 16) -->
+  <rect x="0.5" y="0.5" width="799" height="255" rx="32" fill="url(#shell-surf)" stroke="url(#shell-bevel)"/>
 
-  <!-- Main Atmospheric Frosted Widget Shell -->
-  <g clip-path="url(#shell-clip)">
-    <rect x="6" y="6" width="788" height="248" rx="34" fill="url(#apple-mesh)"/>
-    <rect x="6" y="6" width="788" height="248" rx="34" fill="url(#bloom-rose)"/>
-    <rect x="6" y="6" width="788" height="248" rx="34" fill="url(#bloom-sky)"/>
-    <rect x="6" y="6" width="788" height="248" filter="url(#soft-grain)"/>
+  <!-- Left Apple Weather-Style Botanical Sky Window -->
+  <g clip-path="url(#scene-clip)">
+    <g transform="translate(16 16)">
+      
+    <defs>
+      <linearGradient id="apple-sky" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#3D82C4"/>
+        <stop offset="52%" stop-color="#6AA8DE"/>
+        <stop offset="100%" stop-color="#AED4F2"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="264" height="190" fill="url(#apple-sky)"/>
+    <circle cx="214" cy="44" r="24" fill="#FFF8DC" opacity="0.28"/>
+    <circle cx="214" cy="44" r="12" fill="#FFF8DC" opacity="0.72"/>
+    <ellipse cx="72" cy="66" rx="34" ry="11" fill="#FFFFFF" opacity="0.24"/>
+    <ellipse cx="92" cy="62" rx="22" ry="9" fill="#FFFFFF" opacity="0.26"/>
+    <ellipse cx="196" cy="86" rx="28" ry="8" fill="#FFFFFF" opacity="0.18"/>
+    <rect x="0" y="184" width="264" height="32" fill="#D8CEC0"/>
+    <line x1="0" y1="184" x2="264" y2="184" stroke="#C5B9A8" stroke-width="1"/>
+    <ellipse cx="132" cy="186" rx="46" ry="5" fill="rgba(0,0,0,0.22)"/>
+    <!-- Ceramic Pot -->
+    <path d="M92 154 L172 154 L164 181 Q162 185 158 185 L106 185 Q102 185 100 181 Z" fill="#ECEAE4"/>
+    <path d="M144 154 L172 154 L164 181 Q162 185 158 185 L142 185 Z" fill="#C9C5BC" opacity="0.45"/>
+    <rect x="86" y="148" width="92" height="7" rx="3" fill="#F8F7F4"/>
+    <rect x="104" y="184" width="12" height="3" rx="1" fill="#C9C5BC"/>
+    <rect x="148" y="184" width="12" height="3" rx="1" fill="#C9C5BC"/>
+    <ellipse cx="132" cy="148" rx="38" ry="4" fill="#543D2D"/>
+    <ellipse cx="122" cy="148" rx="14" ry="2.5" fill="#40916C" opacity="0.8"/>
+    <!-- Stage 1: Sprout -->
+    <path d="M132 148 C131 134 136 122 133 108" stroke="#472E1E" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M131 148 C130 134 135 122 132 108" stroke="#6D4830" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M130 146 C129 134 133 124 131 112" stroke="#8F6244" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <path d="M133 114 C118 112 108 100 112 91 C124 91 133 101 133 114 Z" fill="#2D8A56"/>
+    <path d="M132 110 C121 107 115 99 116 93 C124 94 130 101 132 110 Z" fill="#49B675"/>
+    <path d="M133 109 C145 104 156 108 154 117 C144 120 135 115 133 109 Z" fill="#1B5E3A"/>
+    <path d="M134 109 C144 106 152 109 151 115 C143 117 137 113 134 109 Z" fill="#2D8A56"/>
+    <ellipse cx="132" cy="99" rx="15" ry="9" fill="#1B5E3A"/><ellipse cx="130" cy="96" rx="13.8" ry="7.9" fill="#2D8A56"/><ellipse cx="129.6" cy="93.5" rx="9.3" ry="4.3" fill="#49B675"/>
+    </g>
+    <text x="32" y="40" font-size="12" font-weight="500" fill="rgba(255,255,255,0.88)">Stage 1 of 5 · Sprout</text>
   </g>
-  <rect x="6" y="6" width="788" height="248" rx="34" stroke="url(#glass-rim)" stroke-width="2.2"/>
+  <rect x="16.5" y="16.5" width="263" height="223" rx="16" stroke="url(#card-bevel)" fill="none"/>
 
-  <!-- Left Hero Zone -->
-  <circle cx="40" cy="36" r="4" fill="#34D399" class="pulse-dot"/>
-  <text x="52" y="40" font-size="11.5" font-weight="700" fill="rgba(255,255,255,0.78)" letter-spacing="0.08em">STAGE 1/5 • SPROUT</text>
+  <!-- Right Apple Widget Modules -->
+  <!-- Widget Header with Apple App Icon Tile -->
+  <rect x="296" y="18" width="32" height="32" rx="8" fill="url(#app-icon-grad)"/>
+  <path d="M306 39c1-6.5 5-10.5 11.5-11.5-1 6.5-5 10.5-11.5 11.5Z" fill="#FFFFFF"/>
+  <path d="M306 39l5-5" stroke="#248A3D" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="338" y="32" font-size="15.5" font-weight="600" fill="#1D1D1F">Community Bonsai</text>
+  <text x="338" y="48" font-size="12" font-weight="400" fill="#515154">Last watered by @Mufath · 22m ago</text>
 
-  <!-- Bonsai Pixel Art -->
-  <ellipse cx="160" cy="174" rx="46" ry="5" fill="rgba(0,0,0,0.22)"/>
-  <g shape-rendering="crispEdges">
-    <rect x="154" y="96" width="12" height="6" fill="#4ADE80"/>
-    <rect x="142" y="102" width="12" height="6" fill="#4ADE80"/>
-    <rect x="154" y="102" width="12" height="6" fill="#22C55E"/>
-    <rect x="166" y="102" width="6" height="6" fill="#4ADE80"/>
-    <rect x="136" y="108" width="6" height="6" fill="#4ADE80"/>
-    <rect x="142" y="108" width="12" height="6" fill="#22C55E"/>
-    <rect x="154" y="108" width="6" height="6" fill="#15803D"/>
-    <rect x="166" y="108" width="6" height="6" fill="#22C55E"/>
-    <rect x="172" y="108" width="6" height="6" fill="#4ADE80"/>
-    <rect x="148" y="114" width="6" height="6" fill="#15803D"/>
-    <rect x="160" y="114" width="6" height="6" fill="#A9744F"/>
-    <rect x="172" y="114" width="12" height="6" fill="#22C55E"/>
-    <rect x="154" y="120" width="6" height="6" fill="#A9744F"/>
-    <rect x="160" y="120" width="6" height="6" fill="#855637"/>
-    <rect x="154" y="126" width="6" height="6" fill="#855637"/>
-    <rect x="160" y="126" width="6" height="6" fill="#593722"/>
-    <rect x="148" y="132" width="6" height="6" fill="#A9744F"/>
-    <rect x="154" y="132" width="6" height="6" fill="#855637"/>
-    <rect x="160" y="132" width="6" height="6" fill="#593722"/>
-    <rect x="130" y="138" width="60" height="6" fill="#4A3222"/>
-    <rect x="124" y="144" width="72" height="6" fill="#FFFFFF"/>
-    <rect x="124" y="150" width="66" height="6" fill="#E2E8F0"/>
-    <rect x="190" y="150" width="6" height="6" fill="#94A3B8"/>
-    <rect x="130" y="156" width="48" height="6" fill="#E2E8F0"/>
-    <rect x="178" y="156" width="12" height="6" fill="#94A3B8"/>
-    <rect x="130" y="162" width="48" height="6" fill="#E2E8F0"/>
-    <rect x="178" y="162" width="12" height="6" fill="#94A3B8"/>
-    <rect x="136" y="168" width="12" height="6" fill="#E2E8F0"/>
-    <rect x="172" y="168" width="12" height="6" fill="#94A3B8"/>
-  </g>
+  <!-- Status Capsule -->
+  <rect x="690" y="21" width="94" height="26" rx="13" fill="rgba(0,0,0,0.05)" stroke="rgba(0,0,0,0.07)"/>
+  <circle cx="703" cy="34" r="3.5" fill="#16803C"/>
+  <text x="714" y="38" font-size="12" font-weight="500" fill="#1D1D1F">Thriving</text>
 
-  <!-- Apple StandBy-style Status & Large Readout -->
-  <path d="M42 181.5s-4.5 4.8-4.5 7.5a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.5-4.5-7.5Z" fill="#34D399"/>
-  <text x="53" y="193" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.06em">THRIVING</text>
-  <text x="36" y="233" font-size="38" font-weight="700" fill="#FFFFFF" letter-spacing="-0.03em" class="num">100%<tspan dx="6" font-size="14" font-weight="600" letter-spacing="0.06em" fill="rgba(255,255,255,0.78)">MOISTURE</tspan></text>
+  <!-- Middle Asymmetric Row -->
+  <!-- Left Card: Apple Fitness Tinted Moisture Ring -->
+  <rect x="296" y="64" width="260" height="92" rx="16" fill="url(#card-surf)" stroke="url(#card-bevel)"/>
+  <circle cx="342" cy="110" r="24" stroke="#16803C" stroke-opacity="0.20" stroke-width="6" fill="none"/>
+  <circle cx="342" cy="110" r="24" stroke="#16803C" stroke-width="6" stroke-linecap="round"
+    stroke-dasharray="150.80" stroke-dashoffset="0.00" transform="rotate(-90 342 110)" fill="none"/>
+  <path d="M342 102s-4.5 4.9-4.5 7.6a4.5 4.5 0 0 0 9 0c0-2.7-4.5-7.6-4.5-7.6Z" stroke="#16803C" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+  <text x="382" y="111" font-size="30" font-weight="600" fill="#1D1D1F" letter-spacing="-0.02em" class="num">100%</text>
+  <text x="382" y="130" font-size="12" font-weight="400" fill="#515154">Moisture · Thriving</text>
 
-  <!-- Right Stacked Apple Cards -->
-  <text x="322" y="39" font-size="12" font-weight="700" fill="rgba(255,255,255,0.78)" letter-spacing="0.08em">COMMUNITY BONSAI</text>
+  <!-- Right Card: Growth Progress -->
+  <rect x="568" y="64" width="216" height="92" rx="16" fill="url(#card-surf)" stroke="url(#card-bevel)"/>
+  <text x="584" y="88" font-size="12" font-weight="400" fill="#515154">Growth</text>
+  <text x="768" y="88" text-anchor="end" font-size="12" font-weight="400" fill="#6E6E73" class="num">10 / 30 XP</text>
+  <text x="584" y="114" font-size="16" font-weight="600" fill="#1D1D1F">Lv. 1 · Sprout</text>
+  <rect x="584" y="130" width="184" height="8" rx="4" fill="#E5E5EA"/>
+  <rect x="584" y="130" width="61.3" height="8" rx="4" fill="#0071E3" class="enter-bar"/>
 
-  <!-- Card 1: Growth & Latest Watering -->
-  <rect x="316" y="50" width="450" height="82" rx="20" fill="url(#card1-fill)" stroke="rgba(255,255,255,0.98)" stroke-width="1.2"/>
-  <rect x="334" y="62" width="20" height="20" rx="6" stroke="#1D1D1F" stroke-width="1.7" fill="none"/>
-  <path d="M339.5 72.3l3.1 3.1 6-6.2" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <text x="364" y="77" font-size="15" font-weight="600" fill="#1D1D1F">Growth • Lv.1 Sprout</text>
-  <text x="748" y="77" text-anchor="end" font-size="13.5" font-weight="600" fill="#007AFF" class="num">10 / 30 XP</text>
-  <rect x="334" y="92" width="414" height="6" rx="3" fill="rgba(29,29,31,0.10)"/>
-  <rect x="334" y="92" width="138.0" height="6" rx="3" fill="#007AFF" class="bar-anim"/>
-  <text x="334" y="118" font-size="12" fill="#6E6E73">Last watered by @Mufath (10m ago)</text>
+  <!-- Bottom Card: Apple Storage-Style Visitor Care Bar -->
+  <rect x="296" y="168" width="488" height="72" rx="16" fill="url(#card-surf)" stroke="url(#card-bevel)"/>
+  <text x="312" y="190" font-size="12.5" font-weight="500" fill="#1D1D1F">Visitor activity</text>
+  <text x="768" y="190" text-anchor="end" font-size="12" font-weight="400" fill="#515154" class="num">66 total</text>
 
-  <!-- Card 2: Frosted Glass Visitor Insights (Profile Views Replacement) -->
-  <rect x="316" y="144" width="450" height="74" rx="20" fill="url(#card2-fill)" stroke="rgba(255,255,255,0.78)" stroke-width="1.2"/>
-  <line x1="466" y1="158" x2="466" y2="204" stroke="rgba(29,29,31,0.12)" stroke-width="1"/>
-  <line x1="616" y1="158" x2="616" y2="204" stroke="rgba(29,29,31,0.12)" stroke-width="1"/>
+  <rect x="312" y="200" width="12.0" height="10" rx="5" fill="#0071E3" class="enter-bar"/>
+  <rect x="326.0" y="200" width="442.0" height="10" rx="5" fill="#D1D1D6"/>
 
-  <text x="391" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569" letter-spacing="0.06em">PROFILE VIEWS</text>
-  <text x="391" y="199" text-anchor="middle" font-size="22" font-weight="700" fill="#1D1D1F" class="num">66</text>
-
-  <text x="541" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569" letter-spacing="0.06em">WATERED</text>
-  <text x="541" y="199" text-anchor="middle" font-size="22" font-weight="700" fill="#007AFF" class="num">1</text>
-
-  <text x="691" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569" letter-spacing="0.06em">JUST LOOKING</text>
-  <text x="691" y="199" text-anchor="middle" font-size="22" font-weight="700" fill="#1D1D1F" class="num">65</text>
-
-  <!-- Bottom Apple Pager Indicator -->
-  <rect x="490" y="232" width="102" height="5" rx="2.5" fill="rgba(255,255,255,0.28)"/>
-  <rect x="528" y="232" width="38" height="5" rx="2.5" fill="#FFFFFF" fill-opacity="0.92"/>
+  <circle cx="316" cy="224" r="3.5" fill="#0071E3"/>
+  <text x="326" y="228" font-size="11.5" font-weight="400" fill="#515154">Watered <tspan font-weight="500" fill="#1D1D1F" class="num">1 (1.5%)</tspan></text>
+  <circle cx="484" cy="224" r="3.5" fill="#D1D1D6"/>
+  <text x="494" y="228" font-size="11.5" font-weight="400" fill="#515154">Just looking <tspan font-weight="500" fill="#1D1D1F" class="num">65 (98.5%)</tspan></text>
 </svg>

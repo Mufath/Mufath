@@ -71,7 +71,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/bonsai_state.json cards/bonsai-widget-dark.svg cards/bonsai-widget-light.svg
+          git add data/bonsai_state.json cards/bonsai-widget-dark.svg cards/bonsai-widget-light.svg cards/bonsai-cta-dark.svg cards/bonsai-cta-light.svg
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else

@@ -28,8 +28,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Mufath/Mufath/issues/new?template=water-bonsai.md&title=%5BWater+Bonsai%5D+%F0%9F%92%A7"><img src="https://img.shields.io/badge/%F0%9F%92%A7_Water_This_Bonsai-007AFF?style=for-the-badge" alt="Water This Bonsai" /></a>
-  <img src="https://komarev.com/ghpvc/?username=Mufath&style=pixel" alt="" />
+  <a href="https://github.com/Mufath/Mufath/issues/new?template=water-bonsai.md&title=%5BWater+Bonsai%5D+%F0%9F%92%A7"><picture><source media="(prefers-color-scheme: dark)" srcset="./cards/bonsai-cta-dark.svg"><img src="./cards/bonsai-cta-light.svg" alt="Water this bonsai" /></picture></a><img src="https://komarev.com/ghpvc/?username=Mufath&style=pixel" alt="" />
 </p>
 
 ---
