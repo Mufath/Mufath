@@ -16,17 +16,17 @@
       <stop offset="100%" stop-color="#7DD3FC" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="glass-rim" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.92)"/>
-      <stop offset="55%" stop-color="rgba(255,255,255,0.34)"/>
-      <stop offset="100%" stop-color="rgba(255,255,255,0.92)"/>
+      <stop offset="0%" stop-color="rgba(255,255,255,0.94)"/>
+      <stop offset="55%" stop-color="rgba(255,255,255,0.38)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.94)"/>
     </linearGradient>
     <linearGradient id="card1-fill" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.94"/>
-      <stop offset="100%" stop-color="#F8FAFC" stop-opacity="0.94"/>
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#F8FAFC" stop-opacity="0.95"/>
     </linearGradient>
     <linearGradient id="card2-fill" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.74"/>
-      <stop offset="100%" stop-color="#DCE6F2" stop-opacity="0.74"/>
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.68"/>
+      <stop offset="100%" stop-color="#DCE6F2" stop-opacity="0.68"/>
     </linearGradient>
     <clipPath id="shell-clip">
       <rect x="6" y="6" width="788" height="248" rx="34"/>
@@ -79,36 +79,37 @@
   <text x="52" y="40" font-size="11.5" font-weight="700" fill="rgba(255,255,255,0.78)" letter-spacing="0.08em">STAGE 1/5 • SPROUT</text>
 
   <!-- Bonsai Pixel Art -->
+  <ellipse cx="160" cy="174" rx="46" ry="5" fill="rgba(0,0,0,0.22)"/>
   <g shape-rendering="crispEdges">
-    <rect x="158" y="107" width="10" height="5" fill="#4ADE80"/>
-    <rect x="148" y="112" width="10" height="5" fill="#4ADE80"/>
-    <rect x="158" y="112" width="10" height="5" fill="#22C55E"/>
-    <rect x="168" y="112" width="5" height="5" fill="#4ADE80"/>
-    <rect x="143" y="117" width="5" height="5" fill="#4ADE80"/>
-    <rect x="148" y="117" width="10" height="5" fill="#22C55E"/>
-    <rect x="158" y="117" width="5" height="5" fill="#15803D"/>
-    <rect x="168" y="117" width="5" height="5" fill="#22C55E"/>
-    <rect x="173" y="117" width="5" height="5" fill="#4ADE80"/>
-    <rect x="153" y="122" width="5" height="5" fill="#15803D"/>
-    <rect x="163" y="122" width="5" height="5" fill="#A9744F"/>
-    <rect x="173" y="122" width="10" height="5" fill="#22C55E"/>
-    <rect x="158" y="127" width="5" height="5" fill="#A9744F"/>
-    <rect x="163" y="127" width="5" height="5" fill="#855637"/>
-    <rect x="158" y="132" width="5" height="5" fill="#855637"/>
-    <rect x="163" y="132" width="5" height="5" fill="#593722"/>
-    <rect x="153" y="137" width="5" height="5" fill="#A9744F"/>
-    <rect x="158" y="137" width="5" height="5" fill="#855637"/>
-    <rect x="163" y="137" width="5" height="5" fill="#593722"/>
-    <rect x="138" y="142" width="50" height="5" fill="#4A3222"/>
-    <rect x="133" y="147" width="60" height="5" fill="#FFFFFF"/>
-    <rect x="133" y="152" width="55" height="5" fill="#E2E8F0"/>
-    <rect x="188" y="152" width="5" height="5" fill="#94A3B8"/>
-    <rect x="138" y="157" width="40" height="5" fill="#E2E8F0"/>
-    <rect x="178" y="157" width="10" height="5" fill="#94A3B8"/>
-    <rect x="138" y="162" width="40" height="5" fill="#E2E8F0"/>
-    <rect x="178" y="162" width="10" height="5" fill="#94A3B8"/>
-    <rect x="143" y="167" width="10" height="5" fill="#E2E8F0"/>
-    <rect x="173" y="167" width="10" height="5" fill="#94A3B8"/>
+    <rect x="154" y="96" width="12" height="6" fill="#4ADE80"/>
+    <rect x="142" y="102" width="12" height="6" fill="#4ADE80"/>
+    <rect x="154" y="102" width="12" height="6" fill="#22C55E"/>
+    <rect x="166" y="102" width="6" height="6" fill="#4ADE80"/>
+    <rect x="136" y="108" width="6" height="6" fill="#4ADE80"/>
+    <rect x="142" y="108" width="12" height="6" fill="#22C55E"/>
+    <rect x="154" y="108" width="6" height="6" fill="#15803D"/>
+    <rect x="166" y="108" width="6" height="6" fill="#22C55E"/>
+    <rect x="172" y="108" width="6" height="6" fill="#4ADE80"/>
+    <rect x="148" y="114" width="6" height="6" fill="#15803D"/>
+    <rect x="160" y="114" width="6" height="6" fill="#A9744F"/>
+    <rect x="172" y="114" width="12" height="6" fill="#22C55E"/>
+    <rect x="154" y="120" width="6" height="6" fill="#A9744F"/>
+    <rect x="160" y="120" width="6" height="6" fill="#855637"/>
+    <rect x="154" y="126" width="6" height="6" fill="#855637"/>
+    <rect x="160" y="126" width="6" height="6" fill="#593722"/>
+    <rect x="148" y="132" width="6" height="6" fill="#A9744F"/>
+    <rect x="154" y="132" width="6" height="6" fill="#855637"/>
+    <rect x="160" y="132" width="6" height="6" fill="#593722"/>
+    <rect x="130" y="138" width="60" height="6" fill="#4A3222"/>
+    <rect x="124" y="144" width="72" height="6" fill="#FFFFFF"/>
+    <rect x="124" y="150" width="66" height="6" fill="#E2E8F0"/>
+    <rect x="190" y="150" width="6" height="6" fill="#94A3B8"/>
+    <rect x="130" y="156" width="48" height="6" fill="#E2E8F0"/>
+    <rect x="178" y="156" width="12" height="6" fill="#94A3B8"/>
+    <rect x="130" y="162" width="48" height="6" fill="#E2E8F0"/>
+    <rect x="178" y="162" width="12" height="6" fill="#94A3B8"/>
+    <rect x="136" y="168" width="12" height="6" fill="#E2E8F0"/>
+    <rect x="172" y="168" width="12" height="6" fill="#94A3B8"/>
   </g>
 
   <!-- Apple StandBy-style Status & Large Readout -->
@@ -120,14 +121,14 @@
   <text x="322" y="39" font-size="12" font-weight="700" fill="rgba(255,255,255,0.78)" letter-spacing="0.08em">COMMUNITY BONSAI</text>
 
   <!-- Card 1: Growth & Latest Watering -->
-  <rect x="316" y="50" width="450" height="82" rx="20" fill="url(#card1-fill)" stroke="rgba(255,255,255,0.95)" stroke-width="1.2"/>
+  <rect x="316" y="50" width="450" height="82" rx="20" fill="url(#card1-fill)" stroke="rgba(255,255,255,0.98)" stroke-width="1.2"/>
   <rect x="334" y="62" width="20" height="20" rx="6" stroke="#1D1D1F" stroke-width="1.7" fill="none"/>
   <path d="M339.5 72.3l3.1 3.1 6-6.2" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   <text x="364" y="77" font-size="15" font-weight="600" fill="#1D1D1F">Growth • Lv.1 Sprout</text>
   <text x="748" y="77" text-anchor="end" font-size="13.5" font-weight="600" fill="#007AFF" class="num">10 / 30 XP</text>
   <rect x="334" y="92" width="414" height="6" rx="3" fill="rgba(29,29,31,0.10)"/>
   <rect x="334" y="92" width="138.0" height="6" rx="3" fill="#007AFF" class="bar-anim"/>
-  <text x="334" y="118" font-size="12" fill="#6E6E73">Last watered by @Mufath (6m ago)</text>
+  <text x="334" y="118" font-size="12" fill="#6E6E73">Last watered by @Mufath (10m ago)</text>
 
   <!-- Card 2: Frosted Glass Visitor Insights (Profile Views Replacement) -->
   <rect x="316" y="144" width="450" height="74" rx="20" fill="url(#card2-fill)" stroke="rgba(255,255,255,0.78)" stroke-width="1.2"/>
