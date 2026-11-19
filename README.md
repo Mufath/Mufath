@@ -53,6 +53,11 @@
 - 📡 **[endus-iot-mbg](https://github.com/Mufath/endus-iot-mbg)** - IoT integration and hardware telemetry project.
 
 ---
+<p align="center">
+  <a href="https://github.com/PramudithaN/git-tulkun">
+    <img src="https://raw.githubusercontent.com/mufath/mufath/output/tulkun/tulkun.gif" width="640" alt="git-tulkun swimming" />
+  </a>
+</p>
 
 ### 📊 GitHub Analytics
 
