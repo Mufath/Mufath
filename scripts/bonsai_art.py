@@ -1,4 +1,4 @@
-"""Apple Weather daytime/nighttime alpine backdrop and layered botanical Bonsai artwork."""
+"""Full-bleed 800x272 alpine sky panorama and layered botanical vector Bonsai artwork."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class BotanicalPalette:
-    """Color tokens for the immersive alpine bonsai scene."""
+    """Color tokens for the full-bleed alpine bonsai world."""
 
     sky_top: str
     sky_bot: str
@@ -42,16 +42,16 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
     stone = "#525860" if is_dark else "#8B95A1"
 
     if not is_dark:
-        # Light Mode: Bright morning / daytime alpine sky & sunlit peaks
+        # Light Mode: Crisp morning / daytime alpine sky & sunlit peaks
         if health == "layu":
             return BotanicalPalette(
-                sky_top="#6F7D8C",
-                sky_bot="#C2CCD6",
+                sky_top="#5E6D7D",
+                sky_bot="#B5C1CD",
                 sky_accent="#F1F5F9",
-                peak_far="#8E9AA7",
-                peak_dark="#5A6673",
-                peak_lit="#B8C4D0",
-                ridge_front="#3E4954",
+                peak_far="#8492A0",
+                peak_dark="#525F6C",
+                peak_lit="#B2BECA",
+                ridge_front="#3B4752",
                 pot_body=pot_body,
                 pot_rim=pot_rim,
                 pot_shadow=pot_shadow,
@@ -69,13 +69,13 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
             )
         if health == "haus":
             return BotanicalPalette(
-                sky_top="#C47D44",
-                sky_bot="#F3CFA7",
+                sky_top="#AE6B38",
+                sky_bot="#ECC398",
                 sky_accent="#FFF5D6",
-                peak_far="#B8875E",
-                peak_dark="#7D5638",
-                peak_lit="#DEB087",
-                ridge_front="#593C25",
+                peak_far="#AD7D54",
+                peak_dark="#755033",
+                peak_lit="#D4A57C",
+                ridge_front="#523722",
                 pot_body=pot_body,
                 pot_rim=pot_rim,
                 pot_shadow=pot_shadow,
@@ -93,13 +93,13 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
             )
         if health == "subur":
             return BotanicalPalette(
-                sky_top="#3680C7",
-                sky_bot="#BFE2FA",
+                sky_top="#296BB0",
+                sky_bot="#A9D7F7",
                 sky_accent="#FFF9DB",
-                peak_far="#6F9FC9",
-                peak_dark="#3F698F",
-                peak_lit="#A2C9E8",
-                ridge_front="#284866",
+                peak_far="#6697C2",
+                peak_dark="#396287",
+                peak_lit="#9BC3E4",
+                ridge_front="#254461",
                 pot_body=pot_body,
                 pot_rim=pot_rim,
                 pot_shadow=pot_shadow,
@@ -117,13 +117,13 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
             )
         # Light "segar"
         return BotanicalPalette(
-            sky_top="#4588C9",
-            sky_bot="#C7E4FA",
+            sky_top="#3173B8",
+            sky_bot="#B5DCF7",
             sky_accent="#FFFBEB",
-            peak_far="#77A3C9",
-            peak_dark="#476F94",
-            peak_lit="#A9CDE8",
-            ridge_front="#2E4E6B",
+            peak_far="#6E9BC4",
+            peak_dark="#41688C",
+            peak_lit="#A2C7E4",
+            ridge_front="#2A4966",
             pot_body=pot_body,
             pot_rim=pot_rim,
             pot_shadow=pot_shadow,
@@ -143,13 +143,13 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
     # Dark Mode: Starry twilight alpine sky & moonlit peaks
     if health == "layu":
         return BotanicalPalette(
-            sky_top="#16191D",
-            sky_bot="#2A3038",
+            sky_top="#13161A",
+            sky_bot="#252B33",
             sky_accent="#9CA3AF",
-            peak_far="#1F242B",
-            peak_dark="#14171C",
-            peak_lit="#474F59",
-            ridge_front="#101317",
+            peak_far="#1D2228",
+            peak_dark="#12151A",
+            peak_lit="#434B56",
+            ridge_front="#0E1115",
             pot_body=pot_body,
             pot_rim=pot_rim,
             pot_shadow=pot_shadow,
@@ -167,13 +167,13 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
         )
     if health == "haus":
         return BotanicalPalette(
-            sky_top="#1B1917",
-            sky_bot="#3A3128",
+            sky_top="#181512",
+            sky_bot="#342B22",
             sky_accent="#FBBF24",
-            peak_far="#2B251F",
-            peak_dark="#1A1612",
-            peak_lit="#695542",
-            ridge_front="#14110E",
+            peak_far="#27211B",
+            peak_dark="#17130F",
+            peak_lit="#614F3D",
+            ridge_front="#110E0B",
             pot_body=pot_body,
             pot_rim=pot_rim,
             pot_shadow=pot_shadow,
@@ -191,13 +191,13 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
         )
     if health == "subur":
         return BotanicalPalette(
-            sky_top="#0C1E26",
-            sky_bot="#1E414C",
+            sky_top="#0A1A23",
+            sky_bot="#1B3C48",
             sky_accent="#BAE6FD",
-            peak_far="#17323B",
-            peak_dark="#0D1C22",
-            peak_lit="#4B7480",
-            ridge_front="#0B161B",
+            peak_far="#152E37",
+            peak_dark="#0C1B21",
+            peak_lit="#466E7A",
+            ridge_front="#091419",
             pot_body=pot_body,
             pot_rim=pot_rim,
             pot_shadow=pot_shadow,
@@ -214,13 +214,13 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
             stone=stone,
         )
     return BotanicalPalette(
-        sky_top="#0F222A",
-        sky_bot="#224552",
+        sky_top="#0C1D25",
+        sky_bot="#1F414E",
         sky_accent="#BAE6FD",
-        peak_far="#1A3640",
-        peak_dark="#0F1F26",
-        peak_lit="#4F7784",
-        ridge_front="#0C171C",
+        peak_far="#18333D",
+        peak_dark="#0D1D24",
+        peak_lit="#4B7380",
+        ridge_front="#0A151A",
         pot_body=pot_body,
         pot_rim=pot_rim,
         pot_shadow=pot_shadow,
@@ -239,23 +239,26 @@ def get_botanical_palette(health: str, theme: str) -> BotanicalPalette:
 
 
 def render_sky_and_far_peaks(p: BotanicalPalette, theme: str = "dark") -> str:
-    """Render alpine sky (daytime in light, starry night in dark) for 292x244 viewport."""
+    """Render continuous 800x272 alpine sky & distant misty ridges."""
     is_dark = theme == "dark"
     if is_dark:
         celestial = f"""
-    <circle cx="246" cy="42" r="14" fill="{p.sky_accent}" opacity="0.14"/>
-    <circle cx="246" cy="42" r="7" fill="{p.sky_accent}" opacity="0.88"/>
-    <circle cx="249" cy="40" r="6.2" fill="{p.sky_top}"/>
-    <circle cx="48" cy="54" r="1.0" fill="#FFFFFF" opacity="0.50"/>
-    <circle cx="118" cy="34" r="0.8" fill="#FFFFFF" opacity="0.40"/>
-    <circle cx="196" cy="48" r="1.1" fill="#FFFFFF" opacity="0.45"/>"""
+    <circle cx="256" cy="48" r="14" fill="{p.sky_accent}" opacity="0.14"/>
+    <circle cx="256" cy="48" r="7" fill="{p.sky_accent}" opacity="0.88"/>
+    <circle cx="259" cy="46" r="6.2" fill="{p.sky_top}"/>
+    <circle cx="54" cy="58" r="1.0" fill="#FFFFFF" opacity="0.50"/>
+    <circle cx="122" cy="36" r="0.8" fill="#FFFFFF" opacity="0.40"/>
+    <circle cx="204" cy="52" r="1.1" fill="#FFFFFF" opacity="0.45"/>
+    <circle cx="420" cy="42" r="0.9" fill="#FFFFFF" opacity="0.35"/>
+    <circle cx="628" cy="32" r="1.0" fill="#FFFFFF" opacity="0.40"/>
+    <circle cx="742" cy="54" r="0.8" fill="#FFFFFF" opacity="0.32"/>"""
     else:
         celestial = f"""
-    <circle cx="244" cy="42" r="24" fill="{p.sky_accent}" opacity="0.26"/>
-    <circle cx="244" cy="42" r="12" fill="{p.sky_accent}" opacity="0.78"/>
-    <ellipse cx="76" cy="62" rx="34" ry="10" fill="#FFFFFF" opacity="0.28"/>
-    <ellipse cx="96" cy="58" rx="22" ry="8" fill="#FFFFFF" opacity="0.30"/>
-    <ellipse cx="212" cy="84" rx="26" ry="8" fill="#FFFFFF" opacity="0.20"/>"""
+    <circle cx="254" cy="48" r="24" fill="{p.sky_accent}" opacity="0.28"/>
+    <circle cx="254" cy="48" r="12" fill="{p.sky_accent}" opacity="0.82"/>
+    <ellipse cx="78" cy="68" rx="36" ry="10" fill="#FFFFFF" opacity="0.26"/>
+    <ellipse cx="98" cy="64" rx="22" ry="8" fill="#FFFFFF" opacity="0.28"/>
+    <ellipse cx="486" cy="54" rx="44" ry="11" fill="#FFFFFF" opacity="0.16"/>"""
 
     return f"""
     <defs>
@@ -263,35 +266,37 @@ def render_sky_and_far_peaks(p: BotanicalPalette, theme: str = "dark") -> str:
         <stop offset="0%" stop-color="{p.sky_top}"/>
         <stop offset="100%" stop-color="{p.sky_bot}"/>
       </linearGradient>
-      <radialGradient id="glass-vignette" cx="50%" cy="50%" r="65%">
-        <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#000000" stop-opacity="{'0.36' if is_dark else '0.16'}"/>
+      <radialGradient id="glass-vignette" cx="35%" cy="48%" r="72%">
+        <stop offset="62%" stop-color="#000000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="{'0.34' if is_dark else '0.14'}"/>
       </radialGradient>
     </defs>
-    <rect x="0" y="0" width="292" height="244" fill="url(#alpine-sky)"/>
+    <rect x="0" y="0" width="800" height="272" fill="url(#alpine-sky)"/>
     {celestial}
-    <!-- Far misty alpine peaks -->
-    <path d="M0 194 L58 148 L112 172 L176 142 L236 168 L292 146 L292 244 L0 244 Z" fill="{p.peak_far}" opacity="0.72"/>"""
+    <!-- Continuous far alpine silhouette spanning all 800px -->
+    <path d="M0 210 L68 164 L132 190 L216 156 L296 188 L398 148 L504 184 L624 142 L722 178 L800 154 L800 272 L0 272 Z" fill="{p.peak_far}" opacity="0.74"/>"""
 
 
 def _render_foreground_mountains_and_pot(p: BotanicalPalette, wide: bool = False) -> str:
-    """Render chiseled foreground peaks and the ceramic pot on the center terrace (292x244)."""
+    """Render continuous foreground mountain ridges + Bonsai pot centered at cx=152."""
     mountains = f"""
     <!-- Left chiseled ridge -->
-    <path d="M0 186 L46 156 L106 188 L0 244 Z" fill="{p.peak_dark}"/>
-    <path d="M46 156 L22 178 L44 186 L56 170 Z" fill="{p.peak_lit}" opacity="0.62"/>
-    <!-- Right chiseled peak -->
-    <path d="M180 192 L244 146 L292 176 L292 244 L152 244 Z" fill="{p.peak_dark}"/>
-    <path d="M244 146 L218 174 L240 182 L252 166 L262 172 L244 146 Z" fill="{p.peak_lit}" opacity="0.70"/>
-    <!-- Foreground terrace -->
-    <path d="M0 206 Q146 186 292 206 L292 244 L0 244 Z" fill="{p.ridge_front}"/>
-    <ellipse cx="146" cy="204" rx="56" ry="7" fill="{p.peak_dark}"/>
-    <ellipse cx="146" cy="204" rx="46" ry="4" fill="rgba(0,0,0,0.34)"/>"""
+    <path d="M0 202 L48 168 L112 204 L0 272 Z" fill="{p.peak_dark}"/>
+    <path d="M48 168 L22 192 L46 200 L58 184 Z" fill="{p.peak_lit}" opacity="0.60"/>
+    <!-- Mid-right continuous chiseled alpine ridge spanning behind the glass cards -->
+    <path d="M192 208 L266 158 L352 196 L464 152 L572 194 L692 146 L800 186 L800 272 L152 272 Z" fill="{p.peak_dark}"/>
+    <path d="M266 158 L238 188 L262 196 L278 178 Z" fill="{p.peak_lit}" opacity="0.65"/>
+    <path d="M464 152 L434 184 L460 192 L476 172 Z" fill="{p.peak_lit}" opacity="0.45"/>
+    <path d="M692 146 L658 182 L688 190 L706 168 Z" fill="{p.peak_lit}" opacity="0.50"/>
+    <!-- Continuous foreground terrace -->
+    <path d="M0 226 Q152 204 336 222 Q580 242 800 220 L800 272 L0 272 Z" fill="{p.ridge_front}"/>
+    <ellipse cx="152" cy="222" rx="58" ry="7.5" fill="{p.peak_dark}"/>
+    <ellipse cx="152" cy="222" rx="48" ry="4.5" fill="rgba(0,0,0,0.34)"/>"""
 
-    # Pot centered at cx=146 (264-wide helper shifted by +14, +20 so pot sits at y=204)
+    # Pot centered at cx=152 (264-wide coords shifted by +20, +38 -> pot base at y=222)
     if wide:
         pot = f"""
-    <g transform="translate(14 20)">
+    <g transform="translate(20 38)">
       <path d="M84 156 L180 156 L172 182 Q170 185 166 185 L98 185 Q94 185 92 182 Z" fill="{p.pot_body}"/>
       <path d="M148 156 L180 156 L172 182 Q170 185 166 185 L146 185 Z" fill="{p.pot_shadow}" opacity="0.45"/>
       <rect x="78" y="150" width="108" height="7" rx="3" fill="{p.pot_rim}"/>
@@ -303,7 +308,7 @@ def _render_foreground_mountains_and_pot(p: BotanicalPalette, wide: bool = False
     </g>"""
     else:
         pot = f"""
-    <g transform="translate(14 20)">
+    <g transform="translate(20 38)">
       <path d="M92 154 L172 154 L164 181 Q162 185 158 185 L106 185 Q102 185 100 181 Z" fill="{p.pot_body}"/>
       <path d="M144 154 L172 154 L164 181 Q162 185 158 185 L142 185 Z" fill="{p.pot_shadow}" opacity="0.45"/>
       <rect x="86" y="148" width="92" height="7" rx="3" fill="{p.pot_rim}"/>
@@ -332,7 +337,7 @@ def _blossom(cx: float, cy: float, r: float, p: BotanicalPalette) -> str:
 
 
 def render_bonsai_foreground(level: int, health: str, theme: str) -> str:
-    """Render foreground ridges and bonsai tree centered at x=146 inside 292x244 viewport."""
+    """Render foreground ridges and bonsai tree centered at cx=152 inside 800x272 canvas."""
     lvl = max(1, min(5, level))
     p = get_botanical_palette(health, theme)
     base = _render_foreground_mountains_and_pot(p, wide=(lvl >= 4))
@@ -405,7 +410,7 @@ def render_bonsai_foreground(level: int, health: str, theme: str) -> str:
     {_blossom(188, 66, 3.2, p)}
     {_blossom(204, 70, 2.6, p)}"""
 
-    return f'{base}<g transform="translate(14 20)">{tree}</g>'
+    return f'{base}<g transform="translate(20 38)">{tree}</g>'
 
 
 def render_bonsai_illustration(level: int, health: str, theme: str) -> str:
