@@ -1,13 +1,13 @@
 {
   "level": 1,
   "xp": 20,
-  "moisture": 100,
+  "moisture": 85,
   "health": "subur",
   "total_waterings": 2,
-  "last_known_views": 110,
+  "last_known_views": 111,
   "last_watered_at": "2026-11-20T00:32:01Z",
   "last_watered_by": "Mufath",
-  "last_decay_date": "2026-11-20",
+  "last_decay_date": "2026-11-21",
   "recent_waterers": [
     {
       "user": "Mufath",
@@ -20,8 +20,6 @@
       "xp_gained": 10
     }
   ],
-  "user_cooldowns": {
-    "mufath": "2026-11-20T00:32:01Z"
-  },
+  "user_cooldowns": {},
   "created_at": "2026-11-19T16:51:27Z"
 }
