@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="272" viewBox="0 0 800 272" fill="none" role="img" aria-labelledby="bonsai-title bonsai-desc">
-  <title id="bonsai-title">Community Bonsai Lv.1 Sprout</title>
-  <desc id="bonsai-desc">Moisture 85%, Status Thriving, Views 111, Watered 2, Just looking 109.</desc>
+  <title id="bonsai-title">Community Bonsai Lv.2 Sapling</title>
+  <desc id="bonsai-desc">Moisture 100%, Status Thriving, Views 113, Watered 3, Just looking 110.</desc>
   <defs>
     <linearGradient id="glass-fill" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#0F1D26" stop-opacity="0.58"/>
@@ -67,7 +67,7 @@
     <path d="M0 210 L68 164 L132 190 L216 156 L296 188 L398 148 L504 184 L624 142 L722 178 L800 154 L800 272 L0 272 Z" fill="#152E37" opacity="0.74"/>
 
     <!-- Giant translucent moisture depth readout in left sky -->
-    <text x="152" y="106" text-anchor="middle" font-size="76" font-weight="700" letter-spacing="-0.04em" fill="url(#depth-num-grad)" class="num">85%</text>
+    <text x="152" y="106" text-anchor="middle" font-size="76" font-weight="700" letter-spacing="-0.04em" fill="url(#depth-num-grad)" class="num">100%</text>
 
     <!-- Continuous foreground alpine ridges & Bonsai centered at x=152 -->
     
@@ -92,14 +92,12 @@
       <ellipse cx="132" cy="148" rx="38" ry="4" fill="#33261D"/>
       <ellipse cx="122" cy="148" rx="14" ry="2.5" fill="#2E7D4F" opacity="0.8"/>
     </g><g transform="translate(20 38)">
-    <path d="M132 148 C131 134 136 122 133 108" stroke="#472E1E" stroke-width="6" stroke-linecap="round" fill="none"/>
-    <path d="M131 148 C130 134 135 122 132 108" stroke="#6D4830" stroke-width="4" stroke-linecap="round" fill="none"/>
-    <path d="M130 146 C129 134 133 124 131 112" stroke="#96684A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M133 114 C118 112 108 100 112 91 C124 91 133 101 133 114 Z" fill="#31965E"/>
-    <path d="M132 110 C121 107 115 99 116 93 C124 94 130 101 132 110 Z" fill="#53C482"/>
-    <path d="M133 109 C145 104 156 108 154 117 C144 120 135 115 133 109 Z" fill="#1E6840"/>
-    <path d="M134 109 C144 106 152 109 151 115 C143 117 137 113 134 109 Z" fill="#31965E"/>
-    <ellipse cx="132" cy="99" rx="15" ry="9" fill="#1E6840"/><ellipse cx="130" cy="96" rx="13.8" ry="7.9" fill="#31965E"/><ellipse cx="129.6" cy="93.5" rx="9.3" ry="4.3" fill="#53C482"/></g>
+    <path d="M130 148 C122 134 142 122 136 104 C132 94 126 88 130 78" stroke="#472E1E" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M129 148 C121 134 141 122 135 104 C131 94 125 88 129 78" stroke="#6D4830" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <path d="M127 146 C120 134 137 122 132 106" stroke="#96684A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M134 112 C120 108 110 104 104 98" stroke="#6D4830" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <ellipse cx="102" cy="98" rx="20" ry="11" fill="#1E6840"/><ellipse cx="100" cy="95" rx="18.4" ry="9.7" fill="#31965E"/><ellipse cx="98.8" cy="91.9" rx="12.4" ry="5.3" fill="#53C482"/>
+    <ellipse cx="132" cy="77" rx="24" ry="13" fill="#1E6840"/><ellipse cx="130" cy="74" rx="22.1" ry="11.4" fill="#31965E"/><ellipse cx="128.2" cy="70.4" rx="14.9" ry="6.2" fill="#53C482"/></g>
 
     <!-- Subtle inner glass edge vignette -->
     <rect x="0" y="0" width="800" height="272" fill="url(#glass-vignette)"/>
@@ -109,14 +107,14 @@
   <rect x="0.75" y="0.75" width="798.5" height="270.5" rx="31.25" stroke="url(#outer-rim)" stroke-width="1.5" fill="none"/>
 
   <!-- Left Top Stage Caption -->
-  <text x="26" y="34" font-size="12" font-weight="600" fill="rgba(255,255,255,0.92)">Stage 1 of 5 · Sprout</text>
+  <text x="26" y="34" font-size="12" font-weight="600" fill="rgba(255,255,255,0.92)">Stage 2 of 5 · Sapling</text>
 
   <!-- Right Floating Header Over Sky -->
   <rect x="308" y="18" width="32" height="32" rx="8" fill="url(#app-icon-grad)"/>
   <path d="M318 39c1-6.5 5-10.5 11.5-11.5-1 6.5-5 10.5-11.5 11.5Z" fill="#FFFFFF"/>
   <path d="M318 39l5-5" stroke="#248A3D" stroke-width="1.3" stroke-linecap="round"/>
   <text x="350" y="32" font-size="15.5" font-weight="600" fill="#FFFFFF">Community Bonsai</text>
-  <text x="350" y="48" font-size="12" font-weight="400" fill="rgba(255,255,255,0.88)">Last watered by @Mufath · 22h ago</text>
+  <text x="350" y="48" font-size="12" font-weight="400" fill="rgba(255,255,255,0.88)">Last watered by @Mufath · just now</text>
 
   <!-- Floating Status Pill -->
   <rect x="682" y="21" width="94" height="26" rx="13" fill="rgba(15,29,38,0.52)" stroke="url(#glass-rim)"/>
@@ -125,15 +123,15 @@
 
   <!-- Liquid Glass Card 1: 5-Stage Evolution Journey -->
   <rect x="308" y="64" width="468" height="90" rx="18" fill="url(#glass-fill)" stroke="url(#glass-rim)"/>
-  <text x="326" y="86" font-size="14.5" font-weight="600" fill="#F5F5F7">Lv. 1 · Sprout</text>
-  <text x="758" y="86" text-anchor="end" font-size="12.5" font-weight="500" fill="#0A84FF" class="num">20 / 30 XP</text>
+  <text x="326" y="86" font-size="14.5" font-weight="600" fill="#F5F5F7">Lv. 2 · Sapling</text>
+  <text x="758" y="86" text-anchor="end" font-size="12.5" font-weight="500" fill="#0A84FF" class="num">30 / 80 XP</text>
 
   <rect x="352" y="111" width="376" height="4" rx="2" fill="rgba(255,255,255,0.16)"/>
-  <rect x="352" y="111" width="62.7" height="4" rx="2" fill="#0A84FF"/>
-  <circle cx="352" cy="113" r="9" fill="#0A84FF" fill-opacity="0.22"/><circle cx="352" cy="113" r="5.5" fill="#0A84FF"/><circle cx="352" cy="113" r="2" fill="#FFFFFF"/>
-  <text x="352" y="137" text-anchor="middle" font-size="11" font-weight="600" fill="#F5F5F7">Sprout</text>
-  <circle cx="446" cy="113" r="4.5" fill="#1E303C" stroke="rgba(255,255,255,0.34)" stroke-width="1.5"/>
-  <text x="446" y="137" text-anchor="middle" font-size="11" font-weight="400" fill="#94A3B8">Sapling</text>
+  <rect x="352" y="111" width="94.0" height="4" rx="2" fill="#0A84FF"/>
+  <circle cx="352" cy="113" r="5.5" fill="#0A84FF"/><circle cx="352" cy="113" r="2" fill="#FFFFFF"/>
+  <text x="352" y="137" text-anchor="middle" font-size="11" font-weight="400" fill="#CBD5E1">Sprout</text>
+  <circle cx="446" cy="113" r="9" fill="#0A84FF" fill-opacity="0.22"/><circle cx="446" cy="113" r="5.5" fill="#0A84FF"/><circle cx="446" cy="113" r="2" fill="#FFFFFF"/>
+  <text x="446" y="137" text-anchor="middle" font-size="11" font-weight="600" fill="#F5F5F7">Sapling</text>
   <circle cx="540" cy="113" r="4.5" fill="#1E303C" stroke="rgba(255,255,255,0.34)" stroke-width="1.5"/>
   <text x="540" y="137" text-anchor="middle" font-size="11" font-weight="400" fill="#94A3B8">Young</text>
   <circle cx="634" cy="113" r="4.5" fill="#1E303C" stroke="rgba(255,255,255,0.34)" stroke-width="1.5"/>
@@ -144,7 +142,7 @@
   <!-- Liquid Glass Card 2: Crystal-Clear Visitor Counts -->
   <rect x="308" y="166" width="468" height="88" rx="18" fill="url(#glass-fill)" stroke="url(#glass-rim)"/>
   <text x="326" y="186" font-size="11.5" font-weight="500" fill="#CBD5E1">Visitor activity</text>
-  <text x="758" y="186" text-anchor="end" font-size="11.5" font-weight="500" fill="#0A84FF" class="num">1.8% watered</text>
+  <text x="758" y="186" text-anchor="end" font-size="11.5" font-weight="500" fill="#0A84FF" class="num">2.7% watered</text>
 
   <line x1="464" y1="198" x2="464" y2="242" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
   <line x1="620" y1="198" x2="620" y2="242" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
@@ -155,14 +153,14 @@
     <circle cx="7" cy="7" r="1.8"/>
   </g>
   <text x="346" y="209" font-size="12" font-weight="400" fill="#CBD5E1">Profile views</text>
-  <text x="326" y="238" font-size="24" font-weight="600" fill="#F5F5F7" class="num">111</text>
+  <text x="326" y="238" font-size="24" font-weight="600" fill="#F5F5F7" class="num">113</text>
 
   <!-- Column 2: Watered -->
   <g transform="translate(482 198)" stroke="#0A84FF" stroke-width="1.4" stroke-linejoin="round" fill="none">
     <path d="M7 1.8s-3.8 4.2-3.8 6.6a3.8 3.8 0 0 0 7.6 0c0-2.4-3.8-6.6-3.8-6.6Z"/>
   </g>
   <text x="500" y="209" font-size="12" font-weight="400" fill="#CBD5E1">Watered</text>
-  <text x="482" y="238" font-size="24" font-weight="600" fill="#0A84FF" class="num">2</text>
+  <text x="482" y="238" font-size="24" font-weight="600" fill="#0A84FF" class="num">3</text>
 
   <!-- Column 3: Just Looking -->
   <g transform="translate(638 198)" stroke="#CBD5E1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -170,5 +168,5 @@
     <path d="M2.2 12.2c.8-2.2 2.5-3.2 4.8-3.2s4 1 4.8 3.2"/>
   </g>
   <text x="657" y="209" font-size="12" font-weight="400" fill="#CBD5E1">Just looking</text>
-  <text x="638" y="238" font-size="24" font-weight="600" fill="#F5F5F7" class="num">109</text>
+  <text x="638" y="238" font-size="24" font-weight="600" fill="#F5F5F7" class="num">110</text>
 </svg>
