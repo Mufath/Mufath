@@ -1,13 +1,13 @@
 {
   "level": 2,
   "xp": 30,
-  "moisture": 70,
+  "moisture": 55,
   "health": "segar",
   "total_waterings": 3,
   "last_known_views": 118,
   "last_watered_at": "2026-11-21T12:17:22Z",
   "last_watered_by": "Mufath",
-  "last_decay_date": "2026-11-23",
+  "last_decay_date": "2026-11-24",
   "recent_waterers": [
     {
       "user": "Mufath",
