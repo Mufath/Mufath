@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="272" viewBox="0 0 800 272" fill="none" role="img" aria-labelledby="bonsai-title bonsai-desc">
   <title id="bonsai-title">Community Bonsai Lv.2 Sapling</title>
-  <desc id="bonsai-desc">Moisture 55%, Status Healthy, Views 118, Watered 3, Just looking 115.</desc>
+  <desc id="bonsai-desc">Moisture 40%, Status Thirsty, Views 118, Watered 3, Just looking 115.</desc>
   <defs>
     <linearGradient id="glass-fill" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.82"/>
@@ -44,8 +44,8 @@
     
     <defs>
       <linearGradient id="alpine-sky" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#3173B8"/>
-        <stop offset="100%" stop-color="#B5DCF7"/>
+        <stop offset="0%" stop-color="#AE6B38"/>
+        <stop offset="100%" stop-color="#ECC398"/>
       </linearGradient>
       <radialGradient id="glass-vignette" cx="35%" cy="48%" r="72%">
         <stop offset="62%" stop-color="#000000" stop-opacity="0"/>
@@ -54,30 +54,30 @@
     </defs>
     <rect x="0" y="0" width="800" height="272" fill="url(#alpine-sky)"/>
     
-    <circle cx="254" cy="48" r="24" fill="#FFFBEB" opacity="0.28"/>
-    <circle cx="254" cy="48" r="12" fill="#FFFBEB" opacity="0.82"/>
+    <circle cx="254" cy="48" r="24" fill="#FFF5D6" opacity="0.28"/>
+    <circle cx="254" cy="48" r="12" fill="#FFF5D6" opacity="0.82"/>
     <ellipse cx="78" cy="68" rx="36" ry="10" fill="#FFFFFF" opacity="0.26"/>
     <ellipse cx="98" cy="64" rx="22" ry="8" fill="#FFFFFF" opacity="0.28"/>
     <ellipse cx="486" cy="54" rx="44" ry="11" fill="#FFFFFF" opacity="0.16"/>
     <!-- Continuous far alpine silhouette spanning all 800px -->
-    <path d="M0 210 L68 164 L132 190 L216 156 L296 188 L398 148 L504 184 L624 142 L722 178 L800 154 L800 272 L0 272 Z" fill="#6E9BC4" opacity="0.74"/>
+    <path d="M0 210 L68 164 L132 190 L216 156 L296 188 L398 148 L504 184 L624 142 L722 178 L800 154 L800 272 L0 272 Z" fill="#AD7D54" opacity="0.74"/>
 
     <!-- Giant translucent moisture depth readout in left sky -->
-    <text x="152" y="106" text-anchor="middle" font-size="76" font-weight="700" letter-spacing="-0.04em" fill="url(#depth-num-grad)" class="num">55%</text>
+    <text x="152" y="106" text-anchor="middle" font-size="76" font-weight="700" letter-spacing="-0.04em" fill="url(#depth-num-grad)" class="num">40%</text>
 
     <!-- Continuous foreground alpine ridges & Bonsai centered at x=152 -->
     
     <!-- Left chiseled ridge -->
-    <path d="M0 202 L48 168 L112 204 L0 272 Z" fill="#41688C"/>
-    <path d="M48 168 L22 192 L46 200 L58 184 Z" fill="#A2C7E4" opacity="0.60"/>
+    <path d="M0 202 L48 168 L112 204 L0 272 Z" fill="#755033"/>
+    <path d="M48 168 L22 192 L46 200 L58 184 Z" fill="#D4A57C" opacity="0.60"/>
     <!-- Mid-right continuous chiseled alpine ridge spanning behind the glass cards -->
-    <path d="M192 208 L266 158 L352 196 L464 152 L572 194 L692 146 L800 186 L800 272 L152 272 Z" fill="#41688C"/>
-    <path d="M266 158 L238 188 L262 196 L278 178 Z" fill="#A2C7E4" opacity="0.65"/>
-    <path d="M464 152 L434 184 L460 192 L476 172 Z" fill="#A2C7E4" opacity="0.45"/>
-    <path d="M692 146 L658 182 L688 190 L706 168 Z" fill="#A2C7E4" opacity="0.50"/>
+    <path d="M192 208 L266 158 L352 196 L464 152 L572 194 L692 146 L800 186 L800 272 L152 272 Z" fill="#755033"/>
+    <path d="M266 158 L238 188 L262 196 L278 178 Z" fill="#D4A57C" opacity="0.65"/>
+    <path d="M464 152 L434 184 L460 192 L476 172 Z" fill="#D4A57C" opacity="0.45"/>
+    <path d="M692 146 L658 182 L688 190 L706 168 Z" fill="#D4A57C" opacity="0.50"/>
     <!-- Continuous foreground terrace -->
-    <path d="M0 226 Q152 204 336 222 Q580 242 800 220 L800 272 L0 272 Z" fill="#2A4966"/>
-    <ellipse cx="152" cy="222" rx="58" ry="7.5" fill="#41688C"/>
+    <path d="M0 226 Q152 204 336 222 Q580 242 800 220 L800 272 L0 272 Z" fill="#523722"/>
+    <ellipse cx="152" cy="222" rx="58" ry="7.5" fill="#755033"/>
     <ellipse cx="152" cy="222" rx="48" ry="4.5" fill="rgba(0,0,0,0.34)"/>
     <g transform="translate(20 38)">
       <path d="M92 154 L172 154 L164 181 Q162 185 158 185 L106 185 Q102 185 100 181 Z" fill="#EFECE6"/>
@@ -85,15 +85,15 @@
       <rect x="86" y="148" width="92" height="7" rx="3" fill="#FAF8F5"/>
       <rect x="104" y="184" width="12" height="3" rx="1" fill="#C6C0B6"/>
       <rect x="148" y="184" width="12" height="3" rx="1" fill="#C6C0B6"/>
-      <ellipse cx="132" cy="148" rx="38" ry="4" fill="#5E4636"/>
-      <ellipse cx="122" cy="148" rx="14" ry="2.5" fill="#4E916E" opacity="0.8"/>
+      <ellipse cx="132" cy="148" rx="38" ry="4" fill="#6E533E"/>
+      <ellipse cx="122" cy="148" rx="14" ry="2.5" fill="#7A9442" opacity="0.8"/>
     </g><g transform="translate(20 38)">
-    <path d="M130 148 C122 134 142 122 136 104 C132 94 126 88 130 78" stroke="#4A3222" stroke-width="8" stroke-linecap="round" fill="none"/>
-    <path d="M129 148 C121 134 141 122 135 104 C131 94 125 88 129 78" stroke="#6E4B33" stroke-width="5.5" stroke-linecap="round" fill="none"/>
-    <path d="M127 146 C120 134 137 122 132 106" stroke="#926649" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-    <path d="M134 112 C120 108 110 104 104 98" stroke="#6E4B33" stroke-width="4" stroke-linecap="round" fill="none"/>
-    <ellipse cx="102" cy="98" rx="20" ry="11" fill="#236342"/><ellipse cx="100" cy="95" rx="18.4" ry="9.7" fill="#35885B"/><ellipse cx="98.8" cy="91.9" rx="12.4" ry="5.3" fill="#52AA7A"/>
-    <ellipse cx="132" cy="77" rx="24" ry="13" fill="#236342"/><ellipse cx="130" cy="74" rx="22.1" ry="11.4" fill="#35885B"/><ellipse cx="128.2" cy="70.4" rx="14.9" ry="6.2" fill="#52AA7A"/></g>
+    <path d="M130 148 C122 134 142 122 136 104 C132 94 126 88 130 78" stroke="#4D3728" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M129 148 C121 134 141 122 135 104 C131 94 125 88 129 78" stroke="#70513B" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <path d="M127 146 C120 134 137 122 132 106" stroke="#8F6A4E" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M134 112 C120 108 110 104 104 98" stroke="#70513B" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <ellipse cx="102" cy="98" rx="20" ry="11" fill="#4E6629"/><ellipse cx="100" cy="95" rx="18.4" ry="9.7" fill="#728F3B"/><ellipse cx="98.8" cy="91.9" rx="12.4" ry="5.3" fill="#93B252"/>
+    <ellipse cx="132" cy="77" rx="24" ry="13" fill="#4E6629"/><ellipse cx="130" cy="74" rx="22.1" ry="11.4" fill="#728F3B"/><ellipse cx="128.2" cy="70.4" rx="14.9" ry="6.2" fill="#93B252"/></g>
 
     <!-- Subtle inner glass edge vignette -->
     <rect x="0" y="0" width="800" height="272" fill="url(#glass-vignette)"/>
@@ -110,12 +110,12 @@
   <path d="M318 39c1-6.5 5-10.5 11.5-11.5-1 6.5-5 10.5-11.5 11.5Z" fill="#FFFFFF"/>
   <path d="M318 39l5-5" stroke="#248A3D" stroke-width="1.3" stroke-linecap="round"/>
   <text x="350" y="32" font-size="15.5" font-weight="600" fill="#FFFFFF">Community Bonsai</text>
-  <text x="350" y="48" font-size="12" font-weight="400" fill="rgba(255,255,255,0.88)">Last watered by @Mufath · 2d ago</text>
+  <text x="350" y="48" font-size="12" font-weight="400" fill="rgba(255,255,255,0.88)">Last watered by @Mufath · 3d ago</text>
 
   <!-- Floating Status Pill -->
   <rect x="690" y="21" width="86" height="26" rx="13" fill="rgba(255,255,255,0.78)" stroke="url(#glass-rim)"/>
-  <circle cx="703" cy="34" r="3.5" fill="#0066CC"/>
-  <text x="714" y="38" font-size="12" font-weight="500" fill="#1D1D1F">Healthy</text>
+  <circle cx="703" cy="34" r="3.5" fill="#B45309"/>
+  <text x="714" y="38" font-size="12" font-weight="500" fill="#1D1D1F">Thirsty</text>
 
   <!-- Liquid Glass Card 1: 5-Stage Evolution Journey -->
   <rect x="308" y="64" width="468" height="90" rx="18" fill="url(#glass-fill)" stroke="url(#glass-rim)"/>
