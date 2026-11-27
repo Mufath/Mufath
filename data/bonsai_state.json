@@ -1,13 +1,13 @@
 {
   "level": 2,
   "xp": 30,
-  "moisture": 25,
-  "health": "haus",
+  "moisture": 10,
+  "health": "layu",
   "total_waterings": 3,
   "last_known_views": 118,
   "last_watered_at": "2026-11-21T12:17:22Z",
   "last_watered_by": "Mufath",
-  "last_decay_date": "2026-11-26",
+  "last_decay_date": "2026-11-27",
   "recent_waterers": [
     {
       "user": "Mufath",
